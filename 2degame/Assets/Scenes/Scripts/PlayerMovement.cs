@@ -11,12 +11,15 @@ public class PlayerMovement : MonoBehaviour
     private int jumpsLeft = 0;
 
     public float moveSpeed = 8f;
-    public float jumpSpeed = 6f;
+    public float jumpSpeed = 7f;
     public Transform GroundCheckPoint;
     public LayerMask GroundLayer;
     public int maxJumps = 2;
     public GameObject losescreen;
     public int points = 0;
+    public bool hasPowerup = false;
+    public bool jumppowerup = false;
+    public bool runpowerup = false;
    // public TextMeshProUGUI scoretext;
 
     // Start is called before the first frame update
@@ -30,41 +33,134 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(GroundCheckPoint.position, GroundCheckRadius, GroundLayer);
     }
+    IEnumerator PowerupCooldown()
+    {
+        yield return new WaitForSeconds(7f);
+        hasPowerup = false;
+        jumppowerup = false;
+        runpowerup = false;
+
+    }
+
+    
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        //moving left and right
-        float nextVelocityX = horizontalInput * moveSpeed;
-
-        if(horizontalInput < 0)
+        if (hasPowerup == false)
         {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            moveSpeed = 8f;
+            jumpSpeed = 7f;
+
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+
+            //moving left and right
+            float nextVelocityX = horizontalInput * moveSpeed;
+
+            if(horizontalInput < 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            }
+            else if(horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            }
+
+            //jumping
+            bool grounded = GroundCheck();
+
+            float nextVelocityY = rb2d.velocity.y;
+
+            if (grounded && nextVelocityY <=0)
+            {
+                jumpsLeft = maxJumps;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+            {
+                nextVelocityY = jumpSpeed;
+                jumpsLeft -= 1;
+            }
+
+            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+
         }
-        else if(horizontalInput > 0)
+        else if(hasPowerup && runpowerup)
         {
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            moveSpeed = 12f;
+            jumpSpeed = 7f;
+
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+
+            //moving left and right
+            float nextVelocityX = horizontalInput * moveSpeed;
+
+            if(horizontalInput < 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            }
+            else if(horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            }
+
+            //jumping
+            bool grounded = GroundCheck();
+
+            float nextVelocityY = rb2d.velocity.y;
+
+            if (grounded && nextVelocityY <=0)
+            {
+                jumpsLeft = maxJumps;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+            {
+                nextVelocityY = jumpSpeed;
+                jumpsLeft -= 1;
+            }
+
+            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+
         }
-
-        //jumping
-        bool grounded = GroundCheck();
-
-        float nextVelocityY = rb2d.velocity.y;
-
-        if (grounded && nextVelocityY <=0)
+        else if(hasPowerup && jumppowerup)
         {
-            jumpsLeft = maxJumps;
-        }
+            moveSpeed = 8f;
+            jumpSpeed = 12f;
 
-        if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-        {
-            nextVelocityY = jumpSpeed;
-            jumpsLeft -= 1;
-        }
+            horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+            //moving left and right
+            float nextVelocityX = horizontalInput * moveSpeed;
+
+            if(horizontalInput < 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            }
+            else if(horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+            }
+
+            //jumping
+            bool grounded = GroundCheck();
+
+            float nextVelocityY = rb2d.velocity.y;
+
+            if (grounded && nextVelocityY <=0)
+            {
+                jumpsLeft = maxJumps;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+            {
+                nextVelocityY = jumpSpeed;
+                jumpsLeft -= 1;
+            }
+
+            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+        }
+        
 
         //dying
         if(transform.position.y < -4)
@@ -76,9 +172,10 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
-    //collecting stars
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //collecting stars
         if(other.tag == "star")
         {
             Destroy(other.gameObject);
@@ -86,7 +183,24 @@ public class PlayerMovement : MonoBehaviour
             //scoretext.text = "Score: " + points;
 
         }   
+        //powerups
+        if(other.tag == "jump")
+        {
+            hasPowerup = true;
+            jumppowerup = true;
+            StartCoroutine(PowerupCooldown());
+            Destroy(other.gameObject);
+        }
+        if(other.tag == "run")
+        {
+            hasPowerup = true;
+            runpowerup = true;
+            StartCoroutine(PowerupCooldown());
+            Destroy(other.gameObject);
+        }
     } 
+
+    
 
     // method to kill enemies by jumping on them
     void OnCollisionEnter2D(Collision2D other){
