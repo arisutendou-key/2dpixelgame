@@ -8,6 +8,7 @@ TagManager:
   - star
   - jump
   - run
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
