@@ -14,11 +14,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform GroundCheckPoint;
     public LayerMask GroundLayer;
     public int maxJumps = 2;
+    public GameObject losescreen;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        losescreen.SetActive(false);
         
     }
     bool GroundCheck()
@@ -60,6 +62,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+
+        if(transform.position.y < -4)
+        {
+            Destroy(gameObject);
+            losescreen.SetActive(true);
+            
+        }
 
         
     }
