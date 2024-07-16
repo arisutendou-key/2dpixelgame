@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float GroundCheckRadius = 0.2f;
     private int jumpsLeft = 0;
+    
 
     public float moveSpeed = 8f;
     public float jumpSpeed = 7f;
@@ -82,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
                 jumpsLeft -= 1;
             }
 
+            
+
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
         }
@@ -119,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
                 nextVelocityY = jumpSpeed;
                 jumpsLeft -= 1;
             }
+            
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
@@ -159,7 +163,11 @@ public class PlayerMovement : MonoBehaviour
             }
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+
+            
         }
+
+        
         
 
         //dying
