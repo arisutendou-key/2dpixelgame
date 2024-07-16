@@ -34,7 +34,7 @@ public class EnemyProjectileScript : MonoBehaviour
             // destroying both the projectile and the player if the two hit
             Destroy(gameObject);
             
-            if(other.gameObject == PlayerMovement.instance){
+            if(other.gameObject == PlayerMovement.instance.gameObject){
                 // change this to just teleport the player to a checkpoint later
                 //Destroy(other.gameObject);
                 PlayerMovement.instance.died = true;
