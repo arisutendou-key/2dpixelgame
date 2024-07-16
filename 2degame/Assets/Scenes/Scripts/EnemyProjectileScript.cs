@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyProjectileScript : MonoBehaviour
 {
     private Rigidbody2D rb2d;
-    public GameObject player;
+    //public GameObject player;
     public float moveSpeed = 4f;
     private Vector2 lookDirection;
 
@@ -16,7 +16,7 @@ public class EnemyProjectileScript : MonoBehaviour
         //player = FindObjectOfType<PlayerMovement>().gameObject;
 
         // sets the direction of the projectile once and leaves it as that
-        lookDirection = (player.transform.position - transform.position).normalized;
+        lookDirection = (PlayerMovement.instance.transform.position - transform.position).normalized;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class EnemyProjectileScript : MonoBehaviour
             // destroying both the projectile and the player if the two hit
             Destroy(gameObject);
             
-            if(other.gameObject == player){
+            if(other.gameObject == PlayerMovement.instance){
                 // change this to just teleport the player to a checkpoint later
                 //Destroy(other.gameObject);
                 PlayerMovement.instance.died = true;
