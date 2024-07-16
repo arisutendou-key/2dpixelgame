@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 respawnPoint;
     public bool died = false;
     public static PlayerMovement instance;
+    public AudioSource enemyDeath;
+
    // public TextMeshProUGUI scoretext;
 
     // Start is called before the first frame update
@@ -240,6 +242,9 @@ public class PlayerMovement : MonoBehaviour
                     // a little boost up and destroy the enemy
                     rb2d.velocity = new Vector2(transform.position.x, 10);
                     Destroy(other.gameObject);
+
+                    // plays killing sound effect
+                    enemyDeath.Play();
                 }
             }
         }

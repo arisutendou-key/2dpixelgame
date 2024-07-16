@@ -15,15 +15,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // *** change to refer to scene name instead of build index later
-        if(SceneManager.GetActiveScene().buildIndex == 1){
+        if(SceneManager.GetActiveScene().name == "Main Menu"){
             mainBGMusic.Play();
-        } else if(SceneManager.GetActiveScene().buildIndex == 2){
+        } else if(SceneManager.GetActiveScene().name == "Earth"){
             earthBGMusic.Play();
-        } else if(SceneManager.GetActiveScene().buildIndex == 3){
+        } else if(SceneManager.GetActiveScene().name == "Neptune"){
             coldBGMusic.Play();
-        } else if(SceneManager.GetActiveScene().buildIndex == 4){
+        } else if(SceneManager.GetActiveScene().name == "Venus"){
             hotBGMusic.Play();
-        } else if(SceneManager.GetActiveScene().buildIndex == 5){
+        } else if(SceneManager.GetActiveScene().name == "Space"){
             spaceBGMusic.Play();
         }
     }
@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.Return)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        */
     }
 }
