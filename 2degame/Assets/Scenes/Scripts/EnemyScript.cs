@@ -26,7 +26,7 @@ public class EnemyScript : MonoBehaviour
         // then, after the specified repetition time, it will spawn a projectile again
         if(Math.Abs((player.transform.position - transform.position).magnitude) <= detectionDistance){
             if(timer == 0){
-                ShootProjectile();
+                ShootProjectile1();
             }
 
             timer++;
@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    private void ShootProjectile(){
+    private void ShootProjectile1(){
         Instantiate(enemyProjectPrefab, transform.position, enemyProjectPrefab.transform.rotation);
     }
 }
