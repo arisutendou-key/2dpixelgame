@@ -101,11 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
             if(horizontalInput < 0)
             {
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+                transform.localScale = new Vector3(-1,1,1);
             }
             else if(horizontalInput > 0)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+                transform.localScale = new Vector3(1,1,1);
             }
 
             //jumping
@@ -142,11 +142,11 @@ public class PlayerMovement : MonoBehaviour
 
             if(horizontalInput < 0)
             {
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+                transform.localScale = new Vector3(-1,1,1);
             }
             else if(horizontalInput > 0)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+                transform.localScale = new Vector3(1,1,1);
             }
 
             //jumping
