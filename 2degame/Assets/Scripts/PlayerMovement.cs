@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumps = 2;
     public GameObject losescreen;
     public int points = 0;
+   // public TextMeshProUGUI scoretext;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
+        //dying
         if(transform.position.y < -4)
         {
             Destroy(gameObject);
@@ -73,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
+    //collecting stars
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "star")
@@ -82,10 +86,5 @@ public class PlayerMovement : MonoBehaviour
             //scoretext.text = "Score: " + points;
 
         }    
-        //if(other.tag == "endpoint")
-        //{
-            //winscreen.SetActive(true);
-
-        //}
-    }
+        
 }
