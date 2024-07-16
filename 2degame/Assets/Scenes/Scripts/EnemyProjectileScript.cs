@@ -13,7 +13,7 @@ public class EnemyProjectileScript : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<PlayerMovement>().gameObject;
+        //player = FindObjectOfType<PlayerMovement>().gameObject;
 
         // sets the direction of the projectile once and leaves it as that
         lookDirection = (player.transform.position - transform.position).normalized;
@@ -36,7 +36,8 @@ public class EnemyProjectileScript : MonoBehaviour
             
             if(other.gameObject == player){
                 // change this to just teleport the player to a checkpoint later
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
+                PlayerMovement.instance.died = true;
             }
         }
     }

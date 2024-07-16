@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public bool hasPowerup = false;
     public bool jumppowerup = false;
     public bool runpowerup = false;
+    public Vector3 respawnPoint;
+    public bool died = false;
+    public static PlayerMovement instance;
    // public TextMeshProUGUI scoretext;
 
     // Start is called before the first frame update
@@ -28,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         losescreen.SetActive(false);
-        
+        respawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        instance = this;
     }
     bool GroundCheck()
     {
@@ -178,12 +182,16 @@ public class PlayerMovement : MonoBehaviour
         //dying
         if(transform.position.y < -4)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            died = true;
             losescreen.SetActive(true);
-            
         }
 
-        
+        // if the player dies, they'll go back to their last checkpoint
+        if(died){
+            transform.position = respawnPoint;
+            died = false;
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -210,6 +218,11 @@ public class PlayerMovement : MonoBehaviour
             runpowerup = true;
             StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
+        }
+
+        // setting respawn point when the player touches a checkpoint
+        if(other.gameObject.CompareTag("Checkpoint")){
+            respawnPoint = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
         }
     } 
 
