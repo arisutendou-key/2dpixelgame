@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float GroundCheckRadius = 0.2f;
     private int jumpsLeft = 0;
-    
+    private Animator anim;
 
     public float moveSpeed = 8f;
     public float jumpSpeed = 7f;
@@ -60,11 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
             if(horizontalInput < 0)
             {
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+                transform.localScale = new Vector3(-1,1,1);
             }
             else if(horizontalInput > 0)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
+                transform.localScale = new Vector3(1,1,1);
             }
 
             //jumping
@@ -82,8 +82,9 @@ public class PlayerMovement : MonoBehaviour
                 nextVelocityY = jumpSpeed;
                 jumpsLeft -= 1;
             }
-
-            
+            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+            //anim.SetFloat("YSpeed", nextVelocityY);
+            //anim.SetBool("Grounded", grounded);
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
@@ -122,7 +123,9 @@ public class PlayerMovement : MonoBehaviour
                 nextVelocityY = jumpSpeed;
                 jumpsLeft -= 1;
             }
-            
+            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+            //anim.SetFloat("YSpeed", nextVelocityY);
+            //anim.SetBool("Grounded", grounded);
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
@@ -164,7 +167,9 @@ public class PlayerMovement : MonoBehaviour
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
-            
+            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+            //anim.SetFloat("YSpeed", nextVelocityY);
+            //anim.SetBool("Grounded", grounded);
         }
 
         
