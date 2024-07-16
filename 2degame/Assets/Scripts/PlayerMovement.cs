@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask GroundLayer;
     public int maxJumps = 2;
     public GameObject losescreen;
+    public int points = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -71,5 +72,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "star")
+        {
+            Destroy(other.gameObject);
+            points += 1;
+            //scoretext.text = "Score: " + points;
+
+        }    
+        //if(other.tag == "endpoint")
+        //{
+            //winscreen.SetActive(true);
+
+        //}
     }
 }
