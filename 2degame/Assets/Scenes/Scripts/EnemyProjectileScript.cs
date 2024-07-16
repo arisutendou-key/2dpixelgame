@@ -13,7 +13,7 @@ public class EnemyProjectileScript : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = FindObjectOfType<PlayerMovement>().gameObject;
 
         // sets the direction of the projectile once and leaves it as that
         lookDirection = (player.transform.position - transform.position).normalized;
@@ -29,12 +29,15 @@ public class EnemyProjectileScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // destroying both the projectile and the player if the two hit
-        if(other.gameObject == player){
+        // should destroy projectile when it touches anything but the enemy or itself
+        if(!other.gameObject.CompareTag("Enemy") && other.gameObject != gameObject){
+            // destroying both the projectile and the player if the two hit
             Destroy(gameObject);
             
-            // change this to just teleport the player to a checkpoint later
-            Destroy(other.gameObject);
+            if(other.gameObject == player){
+                // change this to just teleport the player to a checkpoint later
+                Destroy(other.gameObject);
+            }
         }
     }
 }

@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
         //moving left and right
         float nextVelocityX = horizontalInput * moveSpeed;

@@ -1124,6 +1124,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &326308427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326308428}
+  m_Layer: 0
+  m_Name: EmptyLoseScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &326308428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326308427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 66.97179, y: 2.5082746, z: -0.17643848}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &341477688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,7 +4132,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4119,14 +4150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd0bfb33bf95464aae99b17d34a096f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  jumpSpeed: 6
+  moveSpeed: 10
+  jumpSpeed: 8
   GroundCheckPoint: {fileID: 1806127979}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
   maxJumps: 2
-  losescreen: {fileID: 0}
+  losescreen: {fileID: 326308427}
   points: 0
 --- !u!212 &1391117071
 SpriteRenderer:
