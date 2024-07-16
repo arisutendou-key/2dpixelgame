@@ -40,4 +40,21 @@ public class PlayerController : MonoBehaviour
         // setting all the velocity to the rigidbody
         rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
     }
+
+    // method to kill enemies by jumping on them
+    void OnCollisionEnter2D(Collision2D other){
+        // if colliding with the enemy
+        if(other.gameObject.CompareTag("Enemy")){
+            // if the player is falling down
+            if(rb2d.velocity.y < 0){
+                // if the player is above the enemy
+                if(transform.position.y > other.gameObject.transform.position.y){
+                    // when the player jumps on the enemy, give the player
+                    // a little boost up and destroy the enemy
+                    rb2d.velocity = new Vector2(transform.position.x, 10);
+                    Destroy(other.gameObject);
+                }
+            }
+        }
+    }
 }
