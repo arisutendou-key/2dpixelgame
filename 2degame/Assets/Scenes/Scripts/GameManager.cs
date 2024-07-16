@@ -5,27 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public AudioSource mainBGMusic;
-    public AudioSource earthBGMusic;
-    public AudioSource coldBGMusic;
-    public AudioSource hotBGMusic;
-    public AudioSource spaceBGMusic;
+    public AudioClip mainBGMusic;
+    public AudioClip earthBGMusic;
+    public AudioClip coldBGMusic;
+    public AudioClip hotBGMusic;
+    public AudioClip spaceBGMusic;
+    public AudioSource BGMusic;
 
     // Start is called before the first frame update
     void Start()
     {
         // *** change to refer to scene name instead of build index later
         if(SceneManager.GetActiveScene().name == "Main Menu"){
-            mainBGMusic.Play();
+            BGMusic.clip = mainBGMusic;
         } else if(SceneManager.GetActiveScene().name == "Earth"){
-            earthBGMusic.Play();
+            BGMusic.clip = earthBGMusic;
         } else if(SceneManager.GetActiveScene().name == "Neptune"){
-            coldBGMusic.Play();
+            BGMusic.clip = coldBGMusic;
         } else if(SceneManager.GetActiveScene().name == "Venus"){
-            hotBGMusic.Play();
+            BGMusic.clip = hotBGMusic;
         } else if(SceneManager.GetActiveScene().name == "Space"){
-            spaceBGMusic.Play();
+            BGMusic.clip = spaceBGMusic;
         }
+
+        BGMusic.Play();
     }
 
     // Update is called once per frame
