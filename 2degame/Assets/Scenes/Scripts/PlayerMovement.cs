@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public bool died = false;
     public static PlayerMovement instance;
     public AudioSource enemyDeath;
+    public AudioSource collectStar;
 
    // public TextMeshProUGUI scoretext;
 
@@ -204,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             points += 1;
             //scoretext.text = "Score: " + points;
-
+            collectStar.Play();
         }   
         //powerups
         if(other.tag == "jump")
