@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        rb2d.velocity = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
             // if the player is falling down
             if(rb2d.velocity.y < 0){
                 // if the player is above the enemy
-                if(transform.position.y > other.gameObject.transform.position.y){
+                if(transform.position.y - other.gameObject.transform.position.y > 0.75){
                     // when the player jumps on the enemy, give the player
                     // a little boost up and destroy the enemy
                     rb2d.velocity = new Vector2(transform.position.x, 10);
