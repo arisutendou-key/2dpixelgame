@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private float GroundCheckRadius = 0.2f;
     private int jumpsLeft = 0;
 
-    public float moveSpeed = 10f;
-    public float jumpSpeed = 7.5f;
+    public float moveSpeed = 8f;
+    public float jumpSpeed = 6f;
     public Transform GroundCheckPoint;
     public LayerMask GroundLayer;
     public int maxJumps = 2;
@@ -36,11 +36,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(horizontalInput < 0)
         {
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
         }
         else if(horizontalInput > 0)
         {
-            transform.localScale = new Vector3(1,1,1);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x),Mathf.Abs(transform.localScale.x));
         }
 
         //jumping
