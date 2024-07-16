@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
             points += 1;
             //scoretext.text = "Score: " + points;
 
-        }    
+        }   
+    } 
         
 }
