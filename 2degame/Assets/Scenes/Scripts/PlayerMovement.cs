@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -221,6 +222,18 @@ public class PlayerMovement : MonoBehaviour
             runpowerup = true;
             StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
+        }
+
+        //portals
+        if(other.tag == "neptune")
+        {
+            SceneManager.LoadScene("Neptune");
+
+        }
+        if(other.tag == "venus")
+        {
+            SceneManager.LoadScene("Venus");
+
         }
 
         // setting respawn point when the player touches a checkpoint

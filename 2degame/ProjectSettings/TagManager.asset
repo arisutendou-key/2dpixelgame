@@ -9,6 +9,9 @@ TagManager:
   - jump
   - run
   - Checkpoint
+  - venus
+  - neptune
+  - earth
   layers:
   - Default
   - TransparentFX
