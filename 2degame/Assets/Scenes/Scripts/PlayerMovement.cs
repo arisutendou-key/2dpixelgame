@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float GroundCheckRadius = 0.2f;
     private int jumpsLeft = 0;
     private Animator anim;
+    private cold c;
 
     public float moveSpeed = 8f;
     public float jumpSpeed = 7f;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource enemyDeath;
     public AudioSource collectStar;
     public float starsCollected = 0;
+    public bool oncooldownzone = false;
 
    // public TextMeshProUGUI scoretext;
 
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        c = FindObjectOfType<cold>();
         losescreen.SetActive(false);
         respawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         instance = this;
@@ -218,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
         }
+        
 
         //dying
         if(transform.position.y < -4)
@@ -265,6 +269,16 @@ public class PlayerMovement : MonoBehaviour
             haswarmpowerup = true;
             StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
+        }
+        if(other.tag == "cooldownzone")
+        {
+            oncooldownzone = true;
+            c.coolingnotice.SetActive(true);
+        }
+        if(other.tag == "normalground")
+        {
+            oncooldownzone = false;
+            c.coolingnotice.SetActive(false);
         }
 
         //portals

@@ -33,7 +33,7 @@ public class warm : MonoBehaviour
     }
     IEnumerator warmtimer()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(7f);
         warmupnotice.SetActive(false);
 
     }
