@@ -3705,6 +3705,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5029297456779218841, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c97a486a6a34efa48bdc41ddd5dd04e3, type: 3}
     - target: {fileID: 6274385578838217433, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -10958,6 +10962,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5029297456779218841, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c97a486a6a34efa48bdc41ddd5dd04e3, type: 3}
     - target: {fileID: 6274385578838217433, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
