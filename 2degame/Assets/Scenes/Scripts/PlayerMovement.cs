@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float GroundCheckRadius = 0.2f;
     private int jumpsLeft = 0;
     private Animator anim;
-    private cold c;
+
 
     public float moveSpeed = 8f;
     public float jumpSpeed = 7f;
@@ -29,7 +29,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource enemyDeath;
     public AudioSource collectStar;
     public float starsCollected = 0;
-    public bool oncooldownzone = false;
+    public GameObject freezenotice;
+    public GameObject warmupnotice;
+    public bool freezing = false;
+
+
 
    // public TextMeshProUGUI scoretext;
 
@@ -37,14 +41,44 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        c = FindObjectOfType<cold>();
+
         losescreen.SetActive(false);
         respawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         instance = this;
+
+        freezenotice.SetActive(false);
+        warmupnotice.SetActive(false);
+        freezing = false;
     }
     bool GroundCheck()
     {
         return Physics2D.OverlapCircle(GroundCheckPoint.position, GroundCheckRadius, GroundLayer);
+    }
+
+    IEnumerator coldtimer()
+    {
+        yield return new WaitForSeconds(10f);
+        if(haswarmpowerup == false)
+        {
+            freezing = true;
+        }
+
+    }
+
+    IEnumerator freezetimer()
+    {
+        yield return new WaitForSeconds(5f);
+        if(haswarmpowerup == false)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            freezing = false;
+
+        }
+
+        
     }
     IEnumerator PowerupCooldown()
     {
@@ -53,6 +87,15 @@ public class PlayerMovement : MonoBehaviour
         jumppowerup = false;
         runpowerup = false;
         haswarmpowerup = false;
+    }
+
+    IEnumerator warmPowerupCooldown()
+    {
+        yield return new WaitForSeconds(7f);
+        hasPowerup = false;
+        haswarmpowerup = false;
+        warmupnotice.SetActive(false);
+ 
     }
 
     // Update is called once per frame
@@ -221,6 +264,47 @@ public class PlayerMovement : MonoBehaviour
 
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
         }
+        else if(hasPowerup && jumppowerup)
+        {
+            moveSpeed = 8f;
+            jumpSpeed = 12f;
+
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+
+            //moving left and right
+            float nextVelocityX = horizontalInput * moveSpeed;
+
+            if(horizontalInput < 0)
+            {
+                transform.localScale = new Vector3(-1,1,1);
+            }
+            else if(horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(1,1,1);
+            }
+
+            //jumping
+            bool grounded = GroundCheck();
+
+            float nextVelocityY = rb2d.velocity.y;
+
+            if (grounded && nextVelocityY <=0)
+            {
+                jumpsLeft = maxJumps;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+            {
+                nextVelocityY = jumpSpeed;
+                jumpsLeft -= 1;
+            }
+
+            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+
+            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+            //anim.SetFloat("YSpeed", nextVelocityY);
+            //anim.SetBool("Grounded", grounded);
+        }
         
 
         //dying
@@ -235,6 +319,29 @@ public class PlayerMovement : MonoBehaviour
         if(died){
             transform.position = respawnPoint;
             died = false;
+        }
+
+        //warming/cooling for venus and neptune
+        if(haswarmpowerup)
+        {
+            StopCoroutine("coldtimer");
+            StopCoroutine("freezetimer");
+            warmupnotice.SetActive(true);
+            freezenotice.SetActive(false);
+            freezing = false;
+
+        }
+        else if(freezing == false)
+        {
+            StartCoroutine("coldtimer");
+        }
+        else if(freezing)
+        {
+            freezenotice.SetActive(true);
+            StartCoroutine("freezetimer");
+
+            
+
         }
     }
     
@@ -267,18 +374,9 @@ public class PlayerMovement : MonoBehaviour
         {
             hasPowerup = true;
             haswarmpowerup = true;
-            StartCoroutine(PowerupCooldown());
+            freezing = false;
+            StartCoroutine(warmPowerupCooldown());
             Destroy(other.gameObject);
-        }
-        if(other.tag == "cooldownzone")
-        {
-            oncooldownzone = true;
-            c.coolingnotice.SetActive(true);
-        }
-        if(other.tag == "normalground")
-        {
-            oncooldownzone = false;
-            c.coolingnotice.SetActive(false);
         }
 
         //portals

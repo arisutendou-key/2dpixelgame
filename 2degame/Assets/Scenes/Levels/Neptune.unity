@@ -4922,7 +4922,6 @@ MonoBehaviour:
     m_Bits: 8
   maxJumps: 2
   losescreen: {fileID: 326308427}
-  points: 0
   hasPowerup: 0
   jumppowerup: 0
   runpowerup: 0
@@ -4931,6 +4930,10 @@ MonoBehaviour:
   died: 0
   enemyDeath: {fileID: 1391117074}
   collectStar: {fileID: 1391117075}
+  starsCollected: 0
+  freezenotice: {fileID: 1245125835}
+  warmupnotice: {fileID: 145234481}
+  freezing: 0
 --- !u!212 &1391117071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5224,6 +5227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920b9f128c29a4cf09f5c9a905706cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pm: {fileID: 0}
   freezenotice: {fileID: 1245125835}
   warmupnotice: {fileID: 145234481}
   freezing: 0
