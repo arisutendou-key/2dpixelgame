@@ -3809,7 +3809,7 @@ PrefabInstance:
     - target: {fileID: 5029297456779218841, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c97a486a6a34efa48bdc41ddd5dd04e3, type: 3}
+      objectReference: {fileID: 21300000, guid: 6fc06478b16b7b34da48ffb39ab77339, type: 3}
     - target: {fileID: 6274385578838217433, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -11361,7 +11361,7 @@ PrefabInstance:
     - target: {fileID: 5029297456779218841, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c97a486a6a34efa48bdc41ddd5dd04e3, type: 3}
+      objectReference: {fileID: 21300000, guid: 6fc06478b16b7b34da48ffb39ab77339, type: 3}
     - target: {fileID: 6274385578838217433, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
