@@ -12,6 +12,8 @@ TagManager:
   - venus
   - neptune
   - earth
+  - warm
+  - cooldownzone
   layers:
   - Default
   - TransparentFX
