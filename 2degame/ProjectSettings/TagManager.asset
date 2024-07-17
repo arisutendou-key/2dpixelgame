@@ -12,6 +12,7 @@ TagManager:
   - venus
   - neptune
   - earth
+  - warm
   layers:
   - Default
   - TransparentFX

@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public bool hasPowerup = false;
     public bool jumppowerup = false;
     public bool runpowerup = false;
+    public bool haswarmpowerup = false;
     public Vector3 respawnPoint;
     public bool died = false;
     public static PlayerMovement instance;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         hasPowerup = false;
         jumppowerup = false;
         runpowerup = false;
+        haswarmpowerup = false;
 
     }
 
@@ -179,6 +181,46 @@ public class PlayerMovement : MonoBehaviour
             //anim.SetFloat("YSpeed", nextVelocityY);
             //anim.SetBool("Grounded", grounded);
         }
+        else if(hasPowerup && haswarmpowerup)
+        {
+            moveSpeed = 8f;
+            jumpSpeed = 7f;
+
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+
+            //moving left and right
+            float nextVelocityX = horizontalInput * moveSpeed;
+
+            if(horizontalInput < 0)
+            {
+                transform.localScale = new Vector3(-1,1,1);
+            }
+            else if(horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(1,1,1);
+            }
+
+            //jumping
+            bool grounded = GroundCheck();
+
+            float nextVelocityY = rb2d.velocity.y;
+
+            if (grounded && nextVelocityY <=0)
+            {
+                jumpsLeft = maxJumps;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+            {
+                nextVelocityY = jumpSpeed;
+                jumpsLeft -= 1;
+            }
+            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+            //anim.SetFloat("YSpeed", nextVelocityY);
+            //anim.SetBool("Grounded", grounded);
+
+            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+        }
 
         
         
@@ -220,6 +262,13 @@ public class PlayerMovement : MonoBehaviour
         {
             hasPowerup = true;
             runpowerup = true;
+            StartCoroutine(PowerupCooldown());
+            Destroy(other.gameObject);
+        }
+        if(other.tag == "warm")
+        {
+            hasPowerup = true;
+            haswarmpowerup = true;
             StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
         }
