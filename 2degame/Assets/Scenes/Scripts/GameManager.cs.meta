@@ -3,7 +3,13 @@ guid: a0a02d0da2666459b9d232ae21267df5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mainBGMusic: {fileID: 8300000, guid: 47a21f97db37a4fb8a353085ca06c610, type: 3}
+  - earthBGMusic: {fileID: 8300000, guid: 8af74cf1c5752487ba8962043d9c537d, type: 3}
+  - coldBGMusic: {fileID: 8300000, guid: 272dff55737ab4753a38e22fb6d9615a, type: 3}
+  - hotBGMusic: {fileID: 8300000, guid: 40ee82b6aaa404d54bcf8cd3ffac4dd1, type: 3}
+  - spaceBGMusic: {fileID: 8300000, guid: acb4905a219154328907a83e9126753f, type: 3}
+  - BGMusic: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public AudioClip hotBGMusic;
     public AudioClip spaceBGMusic;
     public AudioSource BGMusic;
+    public bool muted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,5 +40,15 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         */
+    }
+
+    public void MuteMusic(){
+        if(muted){
+            BGMusic.Play();
+        } else {
+            BGMusic.Pause();
+        }
+
+        muted = !muted;
     }
 }
