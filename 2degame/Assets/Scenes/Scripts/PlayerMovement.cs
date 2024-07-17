@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask GroundLayer;
     public int maxJumps = 2;
     public GameObject losescreen;
-    public int points = 0;
     public bool hasPowerup = false;
     public bool jumppowerup = false;
     public bool runpowerup = false;
@@ -28,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
     public AudioSource enemyDeath;
     public AudioSource collectStar;
+    public float starsCollected = 0;
 
    // public TextMeshProUGUI scoretext;
 
@@ -50,10 +50,7 @@ public class PlayerMovement : MonoBehaviour
         jumppowerup = false;
         runpowerup = false;
         haswarmpowerup = false;
-
     }
-
-    
 
     // Update is called once per frame
     void Update()
@@ -222,9 +219,6 @@ public class PlayerMovement : MonoBehaviour
             rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
         }
 
-        
-        
-
         //dying
         if(transform.position.y < -4)
         {
@@ -246,8 +240,8 @@ public class PlayerMovement : MonoBehaviour
         if(other.tag == "star")
         {
             Destroy(other.gameObject);
-            points += 1;
-            //scoretext.text = "Score: " + points;
+            starsCollected += 1;
+            //scoretext.text = "Score: " + starsCollected;
             collectStar.Play();
         }   
         //powerups

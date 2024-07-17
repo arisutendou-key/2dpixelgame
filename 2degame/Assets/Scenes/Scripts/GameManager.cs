@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public AudioClip spaceBGMusic;
     public AudioSource BGMusic;
     public bool muted = false;
+    public GameObject[] totalStars;
+    public float starPercentage;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,9 @@ public class GameManager : MonoBehaviour
         }
 
         BGMusic.Play();
+
+        // figures out how many stars there are in the level
+        totalStars = GameObject.FindGameObjectsWithTag("star");
     }
 
     // Update is called once per frame
@@ -40,6 +45,27 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         */
+
+        print("All stars: " + totalStars.Length);
+        print("Stars collected: " + PlayerMovement.instance.starsCollected);
+
+        // creates a percentage of the stars that the player has collected
+        // out of all the stars in the level
+        starPercentage = (PlayerMovement.instance.starsCollected / totalStars.Length) * 100;
+
+        print("Star %: " + starPercentage);
+
+        // if the percentage of stars that the player has collected is
+        // <= ~50%, the level gets a 1 star rating
+        // if it's < 100%, it's a 2 star rating
+        // a full 100% gets a 3 star rating
+        if(starPercentage <= 50){
+            print("1 star!!!!!");
+        } else if(starPercentage < 100){
+            print("2 stars!!!!!");
+        } else if(starPercentage == 100){
+            print("3 stars yayyyy!!!!!");
+        }
     }
 
     public void MuteMusic(){
