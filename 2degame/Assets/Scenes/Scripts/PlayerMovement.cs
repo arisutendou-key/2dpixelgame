@@ -31,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject freezenotice;
     public GameObject warmupnotice;
     public bool freezing = false;
+    public AudioSource jumpPowerUpSFX;
+    public AudioSource useJumpSFX;
+    public AudioSource runPowerUpSFX;
+    public AudioSource useRunSFX;
+    public AudioClip[] possibleStarSFX;
 
 
 
@@ -56,11 +61,11 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator coldtimer()
     {
         yield return new WaitForSeconds(10f);
+
         if(haswarmpowerup == false)
         {
             freezing = true;
         }
-
     }
 
     IEnumerator freezetimer()
@@ -74,9 +79,7 @@ public class PlayerMovement : MonoBehaviour
         {
             freezing = false;
 
-        }
-
-        
+        }  
     }
     IEnumerator PowerupCooldown()
     {
@@ -103,214 +106,65 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = 8f;
             jumpSpeed = 7f;
+        } else {
+            if(runpowerup){
+                moveSpeed = 12f;
+                //jumpSpeed = 7f;   
 
-            horizontalInput = Input.GetAxisRaw("Horizontal");
+            } else if(jumppowerup){
+                //moveSpeed = 8f;
+                jumpSpeed = 12f;
 
-            //moving left and right
-            float nextVelocityX = horizontalInput * moveSpeed;
+            } else if(haswarmpowerup){
+                moveSpeed = 8f;
+                jumpSpeed = 7f;
 
-            if(horizontalInput < 0)
-            {
-                transform.localScale = new Vector3(-1,1,1);
             }
-            else if(horizontalInput > 0)
-            {
-                transform.localScale = new Vector3(1,1,1);
-            }
-
-            //jumping
-            bool grounded = GroundCheck();
-
-            float nextVelocityY = rb2d.velocity.y;
-
-            if (grounded && nextVelocityY <=0)
-            {
-                jumpsLeft = maxJumps;
-            }
-
-            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-            {
-                nextVelocityY = jumpSpeed;
-                jumpsLeft -= 1;
-            }
-            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
-            //anim.SetFloat("YSpeed", nextVelocityY);
-            //anim.SetBool("Grounded", grounded);
-
-            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
-
         }
-        else if(hasPowerup && runpowerup)
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        //moving left and right
+        float nextVelocityX = horizontalInput * moveSpeed;
+
+        if(horizontalInput < 0)
         {
-            moveSpeed = 12f;
-            jumpSpeed = 7f;
-
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-
-            //moving left and right
-            float nextVelocityX = horizontalInput * moveSpeed;
-
-            if(horizontalInput < 0)
-            {
-                transform.localScale = new Vector3(-1,1,1);
-            }
-            else if(horizontalInput > 0)
-            {
-                transform.localScale = new Vector3(1,1,1);
-            }
-
-            //jumping
-            bool grounded = GroundCheck();
-
-            float nextVelocityY = rb2d.velocity.y;
-
-            if (grounded && nextVelocityY <=0)
-            {
-                jumpsLeft = maxJumps;
-            }
-
-            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-            {
-                nextVelocityY = jumpSpeed;
-                jumpsLeft -= 1;
-            }
-            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
-            //anim.SetFloat("YSpeed", nextVelocityY);
-            //anim.SetBool("Grounded", grounded);
-
-            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
-
+            transform.localScale = new Vector3(-1,1,1);
         }
-        else if(hasPowerup && jumppowerup)
+        else if(horizontalInput > 0)
         {
-            moveSpeed = 8f;
-            jumpSpeed = 12f;
-
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-
-            //moving left and right
-            float nextVelocityX = horizontalInput * moveSpeed;
-
-            if(horizontalInput < 0)
-            {
-                transform.localScale = new Vector3(-1,1,1);
-            }
-            else if(horizontalInput > 0)
-            {
-                transform.localScale = new Vector3(1,1,1);
-            }
-
-            //jumping
-            bool grounded = GroundCheck();
-
-            float nextVelocityY = rb2d.velocity.y;
-
-            if (grounded && nextVelocityY <=0)
-            {
-                jumpsLeft = maxJumps;
-            }
-
-            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-            {
-                nextVelocityY = jumpSpeed;
-                jumpsLeft -= 1;
-            }
-
-            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
-
-            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
-            //anim.SetFloat("YSpeed", nextVelocityY);
-            //anim.SetBool("Grounded", grounded);
+            transform.localScale = new Vector3(1,1,1);
         }
-        else if(hasPowerup && haswarmpowerup)
+
+        //jumping
+        bool grounded = GroundCheck();
+
+        float nextVelocityY = rb2d.velocity.y;
+
+        if (grounded && nextVelocityY <=0)
         {
-            moveSpeed = 8f;
-            jumpSpeed = 7f;
-
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-
-            //moving left and right
-            float nextVelocityX = horizontalInput * moveSpeed;
-
-            if(horizontalInput < 0)
-            {
-                transform.localScale = new Vector3(-1,1,1);
-            }
-            else if(horizontalInput > 0)
-            {
-                transform.localScale = new Vector3(1,1,1);
-            }
-
-            //jumping
-            bool grounded = GroundCheck();
-
-            float nextVelocityY = rb2d.velocity.y;
-
-            if (grounded && nextVelocityY <=0)
-            {
-                jumpsLeft = maxJumps;
-            }
-
-            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-            {
-                nextVelocityY = jumpSpeed;
-                jumpsLeft -= 1;
-            }
-            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
-            //anim.SetFloat("YSpeed", nextVelocityY);
-            //anim.SetBool("Grounded", grounded);
-
-            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+            jumpsLeft = maxJumps;
         }
-        else if(hasPowerup && jumppowerup)
+
+        if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
         {
-            moveSpeed = 8f;
-            jumpSpeed = 12f;
-
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-
-            //moving left and right
-            float nextVelocityX = horizontalInput * moveSpeed;
-
-            if(horizontalInput < 0)
-            {
-                transform.localScale = new Vector3(-1,1,1);
-            }
-            else if(horizontalInput > 0)
-            {
-                transform.localScale = new Vector3(1,1,1);
-            }
-
-            //jumping
-            bool grounded = GroundCheck();
-
-            float nextVelocityY = rb2d.velocity.y;
-
-            if (grounded && nextVelocityY <=0)
-            {
-                jumpsLeft = maxJumps;
-            }
-
-            if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-            {
-                nextVelocityY = jumpSpeed;
-                jumpsLeft -= 1;
-            }
-
-            rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
-
-            //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
-            //anim.SetFloat("YSpeed", nextVelocityY);
-            //anim.SetBool("Grounded", grounded);
+            nextVelocityY = jumpSpeed;
+            jumpsLeft -= 1;
         }
-        
+        //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+        //anim.SetFloat("YSpeed", nextVelocityY);
+        //anim.SetBool("Grounded", grounded);
+
+        rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
+
+        print(nextVelocityY);
+        print(grounded);
 
         //dying
         if(transform.position.y < -4)
         {
             //Destroy(gameObject);
             died = true;
-            
         }
 
         // if the player dies, they'll go back to their last checkpoint
@@ -350,6 +204,8 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             starsCollected += 1;
             //scoretext.text = "Score: " + starsCollected;
+            collectStar.clip = possibleStarSFX[Random.Range(0,4)];
+            
             collectStar.Play();
         }   
         //powerups
@@ -357,6 +213,7 @@ public class PlayerMovement : MonoBehaviour
         {
             hasPowerup = true;
             jumppowerup = true;
+            jumpPowerUpSFX.Play();
             StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
         }
@@ -364,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
         {
             hasPowerup = true;
             runpowerup = true;
+            runPowerUpSFX.Play();
             StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
         }
