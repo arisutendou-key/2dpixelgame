@@ -246,6 +246,11 @@ public class PlayerMovement : MonoBehaviour
             UIManager.instance.levelComplete = true;
             SceneManager.LoadScene("Venus");
         }
+        if(other.tag == "end")
+        {
+            UIManager.instance.levelComplete = true;
+            SceneManager.LoadScene("Endscreen");
+        }
 
         // setting respawn point when the player touches a checkpoint
         if(other.gameObject.CompareTag("Checkpoint")){

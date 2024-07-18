@@ -16,6 +16,7 @@ TagManager:
   - cooldownzone
   - normalground
   - eartn
+  - end
   layers:
   - Default
   - TransparentFX
