@@ -228,8 +228,9 @@ public class PlayerMovement : MonoBehaviour
             hasPowerup = true;
             runpowerup = true;
             runPowerUpSFX.Play();
-            StartCoroutine(PowerupCooldown());
             Destroy(other.gameObject);
+            StartCoroutine(PowerupCooldown());
+            
         }
         if(other.tag == "warm")
         {
@@ -238,6 +239,18 @@ public class PlayerMovement : MonoBehaviour
             freezing = false;
             StartCoroutine(warmPowerupCooldown());
             Destroy(other.gameObject);
+        }
+        if(other.tag == "square")
+        {
+            transform.position = new Vector3(104,-1,0);
+        }
+        if(other.tag == "square2")
+        {
+            transform.position = new Vector3(-11,0,0);
+        }
+        if(other.tag == "end")
+        {
+            SceneManager.LoadScene("Endscreen");
         }
 
         //portals
@@ -252,11 +265,8 @@ public class PlayerMovement : MonoBehaviour
             UIManager.instance.levelComplete = true;
             SceneManager.LoadScene("Venus");
         }
-        if(other.tag == "end")
-        {
-            UIManager.instance.levelComplete = true;
-            SceneManager.LoadScene("Endscreen");
-        }
+        
+        
 
         // setting respawn point when the player touches a checkpoint
         if(other.gameObject.CompareTag("Checkpoint")){
