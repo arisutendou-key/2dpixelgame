@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16, y: -218}
+  m_AnchoredPosition: {x: 0, y: -259}
   m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465381315
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331426739}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1127670364}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: mainscreen
         m_Mode: 1
         m_Arguments:
@@ -594,6 +594,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1127670363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127670365}
+  - component: {fileID: 1127670364}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1127670364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127670363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a402c291443704662aecf5cb167241ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muted: 0
+  levelComplete: 0
+  levelRatingText: {fileID: 0}
+  collectedStarsText: {fileID: 0}
+  levelCompleteScreen: {fileID: 0}
+--- !u!4 &1127670365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127670363}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 944, y: 464, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1192047680
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,9 +780,9 @@ MonoBehaviour:
   hotBGMusic: {fileID: 8300000, guid: 40ee82b6aaa404d54bcf8cd3ffac4dd1, type: 3}
   spaceBGMusic: {fileID: 8300000, guid: acb4905a219154328907a83e9126753f, type: 3}
   BGMusic: {fileID: 0}
-  muted: 0
   totalStars: []
   starPercentage: 0
+  stars: {fileID: 0}
 --- !u!4 &1331426740
 Transform:
   m_ObjectHideFlags: 0
@@ -852,8 +901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 126}
-  m_SizeDelta: {x: 1000, y: 50}
+  m_AnchoredPosition: {x: 0.000030517, y: 144}
+  m_SizeDelta: {x: 1633.7922, y: 604.2044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2106007908
 MonoBehaviour:
@@ -881,7 +930,13 @@ MonoBehaviour:
     D - move right
 
 
-    Space - jump'
+    Space - jump
+
+    Space x2 -
+    double jump
+
+
+    Enemies will shoot at you. Jump on them to kill them'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 820a824b03337e24d8a98914de7ef7cc, type: 2}
   m_sharedMaterial: {fileID: -1928137005795098355, guid: 820a824b03337e24d8a98914de7ef7cc, type: 2}
@@ -944,7 +999,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -7.376587, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

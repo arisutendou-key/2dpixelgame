@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public TextMeshPro levelRatingText;
     public TextMeshPro collectedStarsText;
     public GameObject levelCompleteScreen;
+    //public string lastScene;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
     }
     public void controls()
     {
+        //lastScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Controls");
     }
     public void mainscreen()
@@ -65,4 +67,11 @@ public class UIManager : MonoBehaviour
         levelCompleteScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    /*
+    public void backButton(){
+        //SceneManager.LoadScene(lastScene);
+        SceneManager.LoadScene("StartScreen");
+    }
+    */
 }
