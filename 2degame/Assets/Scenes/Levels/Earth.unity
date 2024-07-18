@@ -10543,12 +10543,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1391117072}
   - component: {fileID: 1391117071}
-  - component: {fileID: 1391117070}
   - component: {fileID: 1391117069}
   - component: {fileID: 1391117068}
   - component: {fileID: 1391117073}
   - component: {fileID: 1391117074}
   - component: {fileID: 1391117075}
+  - component: {fileID: 1391117076}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10603,38 +10603,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1391117070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391117067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd0bfb33bf95464aae99b17d34a096f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpSpeed: 8
-  GroundCheckPoint: {fileID: 1806127979}
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  maxJumps: 2
-  losescreen: {fileID: 326308427}
-  hasPowerup: 0
-  jumppowerup: 0
-  runpowerup: 0
-  haswarmpowerup: 0
-  respawnPoint: {x: 0, y: 0, z: 0}
-  died: 0
-  enemyDeath: {fileID: 1391117074}
-  collectStar: {fileID: 1391117075}
-  starsCollected: 0
-  freezenotice: {fileID: 1564827107}
-  warmupnotice: {fileID: 553232174}
-  freezing: 0
 --- !u!212 &1391117071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10916,6 +10884,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1391117076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391117067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e12b567a68604db3836000c23bf2cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  jumpSpeed: 7
+  GroundCheckPoint: {fileID: 0}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxJumps: 2
+  losescreen: {fileID: 0}
+  hasPowerup: 0
+  jumppowerup: 0
+  runpowerup: 0
+  respawnPoint: {x: 0, y: 0, z: 0}
+  died: 0
+  enemyDeath: {fileID: 0}
+  collectStar: {fileID: 0}
+  starsCollected: 0
 --- !u!1 &1395721994
 GameObject:
   m_ObjectHideFlags: 0
