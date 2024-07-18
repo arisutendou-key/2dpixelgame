@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         freezing = false;
 
         currentHealth = maxHealth;
-        HealthBar.instance.SetMaxHealth(maxHealth);
+        HealthBar.instance.SetMaxHealth(100);
     }
     bool GroundCheck()
     {
@@ -175,11 +175,12 @@ public class PlayerMovement : MonoBehaviour
             HealthBar.instance.SetHealth(currentHealth);
             died = false;
         }
+        HealthBar.instance.SetHealth(currentHealth);
 
         //print(HealthBar.instance.slider.value);
 
         //warming/cooling for venus and neptune
-        if(SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){
+        if (SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){
             if(haswarmpowerup)
             {
                 StopCoroutine("coldtimer");
