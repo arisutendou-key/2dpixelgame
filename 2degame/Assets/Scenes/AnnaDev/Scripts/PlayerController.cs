@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] totalStars;
     public float starsCollected = 0;
     public float starPercentage;
+    public GameObject stars;
 
 
     // Start is called before the first frame update
@@ -59,6 +61,10 @@ public class PlayerController : MonoBehaviour
             print("2 stars!!!!!");
         } else if(starPercentage <= 100){
             print("3 stars yayyyy!!!!!");
+        }
+
+        for(int i = 0; i < 10; i++){
+            Instantiate(stars, Vector2(Ran))
         }
     }
 
