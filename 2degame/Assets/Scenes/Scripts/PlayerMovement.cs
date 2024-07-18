@@ -161,9 +161,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
-        print(nextVelocityY);
-        print(grounded);
-
         //dying
         if(transform.position.y < -4)
         {
@@ -178,6 +175,8 @@ public class PlayerMovement : MonoBehaviour
             HealthBar.instance.SetHealth(currentHealth);
             died = false;
         }
+
+        //print(HealthBar.instance.slider.value);
 
         //warming/cooling for venus and neptune
         if(SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){

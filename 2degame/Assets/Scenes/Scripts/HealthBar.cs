@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -17,7 +18,9 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(slider.value <= 0){
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     public void SetMaxHealth(int health){
@@ -27,5 +30,6 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(int health){
         slider.value = health;
+        print("called");
     }
 }
