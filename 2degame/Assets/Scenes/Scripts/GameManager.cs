@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
         // creates a percentage of the stars that the player has collected
         // out of all the stars in the level
         starPercentage = (PlayerMovement.instance.starsCollected / totalStars.Length) * 100;
-<<<<<<< Updated upstream
 
         print("Star %: " + starPercentage);
 
@@ -98,7 +97,5 @@ public class GameManager : MonoBehaviour
     public void mainscreen()
     {
         SceneManager.LoadScene("StartScreen");
-=======
->>>>>>> Stashed changes
     }
 }
