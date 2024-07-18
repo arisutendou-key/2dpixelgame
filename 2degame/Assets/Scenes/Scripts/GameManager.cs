@@ -94,6 +94,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Controls");
     }
+    public void Venus()
+    {
+        SceneManager.LoadScene("Venus");
+    }
+    public void Neptune()
+    {
+        SceneManager.LoadScene("Neptune");
+    }
     public void mainscreen()
     {
         SceneManager.LoadScene("StartScreen");
