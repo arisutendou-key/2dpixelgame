@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private float GroundCheckRadius = 0.2f;
     private int jumpsLeft = 0;
     private Animator anim;
-
-
     public float moveSpeed = 8f;
     public float jumpSpeed = 7f;
     public Transform GroundCheckPoint;
@@ -39,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int damageAmount = 20;
+    public AudioSource 
 
    // public TextMeshProUGUI scoretext;
 
@@ -55,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         freezing = false;
 
         currentHealth = maxHealth;
-        HealthBar.instance.SetMaxHealth(maxHealth);
+        HealthBar.instance.SetMaxHealth(100);
     }
     bool GroundCheck()
     {
@@ -173,13 +172,15 @@ public class PlayerMovement : MonoBehaviour
             transform.position = respawnPoint;
             currentHealth -= damageAmount;
             HealthBar.instance.SetHealth(currentHealth);
+
             died = false;
         }
+        HealthBar.instance.SetHealth(currentHealth);
 
         //print(HealthBar.instance.slider.value);
 
         //warming/cooling for venus and neptune
-        if(SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){
+        if (SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){
             if(haswarmpowerup)
             {
                 StopCoroutine("coldtimer");

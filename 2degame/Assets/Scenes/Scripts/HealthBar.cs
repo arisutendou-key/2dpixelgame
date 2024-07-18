@@ -7,7 +7,13 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
+    public Slider damageslider;
     public static HealthBar instance;
+
+    public float timeToSetDamage = 2f;
+    public float timeUntilSetDamage = 0f;
+
+    private float previousHP = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +27,34 @@ public class HealthBar : MonoBehaviour
         if(slider.value <= 0){
             SceneManager.LoadScene("GameOver");
         }
+        if (timeUntilSetDamage > 0f)
+        {
+            timeUntilSetDamage -= Time.deltaTime;
+            damageslider.maxValue = slider.maxValue;
+        } 
+        if (timeUntilSetDamage <= 0f)
+        {
+            timeUntilSetDamage = 0f;
+            damageslider.maxValue = slider.maxValue;
+            damageslider.value = slider.value;
+        }
     }
 
     public void SetMaxHealth(int health){
         slider.maxValue = health;
         slider.value = health;
+        damageslider.maxValue = slider.value;
+        damageslider.value = slider.value;
+        print(health);
     }
 
     public void SetHealth(int health){
+        if (previousHP != health)
+        {
+            previousHP = health;
+            timeUntilSetDamage = timeToSetDamage;
+        }
         slider.value = health;
-        print("called");
+        print(health + " / " + slider.maxValue);
     }
 }
