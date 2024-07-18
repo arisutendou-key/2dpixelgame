@@ -184,7 +184,8 @@ public class PlayerMovement : MonoBehaviour
             losingHpSFX.Play();
             died = false;
         }
-        HealthBar.instance.SetHealth(currentHealth);
+
+        print(died);
 
         //print(HealthBar.instance.slider.value);
 
