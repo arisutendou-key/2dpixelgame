@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     void LateUpdate()
     {
         // (add upper bound later)
-        if(player.transform.position.y < 0){
+        if(player.transform.position.y < 0 || player.transform.position.y > 1.6){
             // follows the player's x, but keeps the camera's y and z as it moves 
             transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
         } else {
