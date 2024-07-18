@@ -42,7 +42,7 @@ public class EnemyProjectileScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // should destroy projectile when it touches anything but the enemy or itself
-        if(!other.gameObject.CompareTag("Enemy") && other.gameObject != gameObject){
+        if(!other.gameObject.CompareTag("Enemy") && other.gameObject != gameObject && !other.gameObject.CompareTag("Background")){
             // destroying both the projectile and the player if the two hit
             Destroy(gameObject);
             

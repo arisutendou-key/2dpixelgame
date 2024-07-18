@@ -185,8 +185,6 @@ public class PlayerMovement : MonoBehaviour
             died = false;
         }
 
-        print(died);
-
         //print(HealthBar.instance.slider.value);
 
         //warming/cooling for venus and neptune
