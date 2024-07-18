@@ -11,15 +11,16 @@ public class GameManager : MonoBehaviour
     public AudioClip hotBGMusic;
     public AudioClip spaceBGMusic;
     public AudioSource BGMusic;
-    public bool muted = false;
     public GameObject[] totalStars;
     public float starPercentage;
     public GameObject stars;
+    public static GameManager instance;
 
     // Start is called before the first frame update
     void Start()
     {
-        // *** change to refer to scene name instead of build index later
+        instance = this; 
+
         if(SceneManager.GetActiveScene().name == "StartScreen"){
             BGMusic.clip = mainBGMusic;
 
@@ -48,18 +49,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(Input.GetKeyDown(KeyCode.Return)){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        */
-
-        print("All stars: " + totalStars.Length);
-        print("Stars collected: " + PlayerMovement.instance.starsCollected);
-
         // creates a percentage of the stars that the player has collected
         // out of all the stars in the level
         starPercentage = (PlayerMovement.instance.starsCollected / totalStars.Length) * 100;
+<<<<<<< Updated upstream
 
         print("Star %: " + starPercentage);
 
@@ -105,5 +98,7 @@ public class GameManager : MonoBehaviour
     public void mainscreen()
     {
         SceneManager.LoadScene("StartScreen");
+=======
+>>>>>>> Stashed changes
     }
 }
