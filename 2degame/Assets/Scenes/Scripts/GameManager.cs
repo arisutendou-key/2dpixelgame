@@ -77,4 +77,9 @@ public class GameManager : MonoBehaviour
 
         muted = !muted;
     }
+
+    public void earth()
+    {
+        SceneManager.LoadScene("Earth");
+    }
 }
