@@ -52,40 +52,8 @@ public class GameManager : MonoBehaviour
         // creates a percentage of the stars that the player has collected
         // out of all the stars in the level
         starPercentage = (PlayerMovement.instance.starsCollected / totalStars.Length) * 100;
-
-        print("Star %: " + starPercentage);
-
-        // if the percentage of stars that the player has collected is
-        // <= ~50%, the level gets a 1 star rating
-        // if it's < 100%, it's a 2 star rating
-        // a full 100% gets a 3 star rating
-        if(starPercentage <= 50){
-            print("1 star!!!!!");
-        } else if(starPercentage < 100){
-            print("2 stars!!!!!");
-        } else if(starPercentage == 100){
-            print("3 stars yayyyy!!!!!");
-        }
     }
-
-    public void MuteMusic(){
-        if(muted){
-            BGMusic.Play();
-        } else {
-            BGMusic.Pause();
-        }
-
-        muted = !muted;
-    }
-
-    public void earth()
-    {
-        SceneManager.LoadScene("Earth");
-    }
-    public void controls()
-    {
-        SceneManager.LoadScene("Controls");
-    }
+    
     public void Venus()
     {
         SceneManager.LoadScene("Venus");
@@ -93,9 +61,5 @@ public class GameManager : MonoBehaviour
     public void Neptune()
     {
         SceneManager.LoadScene("Neptune");
-    }
-    public void mainscreen()
-    {
-        SceneManager.LoadScene("StartScreen");
     }
 }
