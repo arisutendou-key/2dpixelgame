@@ -322,26 +322,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //warming/cooling for venus and neptune
-        if(haswarmpowerup)
-        {
-            StopCoroutine("coldtimer");
-            StopCoroutine("freezetimer");
-            warmupnotice.SetActive(true);
-            freezenotice.SetActive(false);
-            freezing = false;
+        if(SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){
+            if(haswarmpowerup)
+            {
+                StopCoroutine("coldtimer");
+                StopCoroutine("freezetimer");
+                warmupnotice.SetActive(true);
+                freezenotice.SetActive(false);
+                freezing = false;
 
-        }
-        else if(freezing == false)
-        {
-            StartCoroutine("coldtimer");
-        }
-        else if(freezing)
-        {
-            freezenotice.SetActive(true);
-            StartCoroutine("freezetimer");
-
-            
-
+            }
+            else if(freezing == false)
+            {
+                StartCoroutine("coldtimer");
+            }
+            else if(freezing)
+            {
+                freezenotice.SetActive(true);
+                StartCoroutine("freezetimer");
+            }
         }
     }
     
