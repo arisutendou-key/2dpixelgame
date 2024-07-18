@@ -18,7 +18,7 @@ public class Background : MonoBehaviour
         if(Camera.main.transform.position.x > transform.position.x + repeatWidth) // in the right of the centerpiece
         {
             // teleport it forward
-            transform.position = new Vector3(transform.position.x + repeatWidth, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + (repeatWidth * 4), transform.position.y, transform.position.z);
         } 
         if(Camera.main.transform.position.x < transform.position.x - repeatWidth) // in the left of the centerpiece
         {

@@ -36,8 +36,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource runPowerUpSFX;
     public AudioSource useRunSFX;
     public AudioClip[] possibleStarSFX;
-
-
+    public int maxHealth = 100;
+    public int currentHealth;
+    public int damageAmount = 20;
 
    // public TextMeshProUGUI scoretext;
 
@@ -52,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
         freezenotice.SetActive(false);
         warmupnotice.SetActive(false);
         freezing = false;
+
+        currentHealth = maxHealth;
+        HealthBar.instance.SetMaxHealth(maxHealth);
     }
     bool GroundCheck()
     {
@@ -170,6 +174,8 @@ public class PlayerMovement : MonoBehaviour
         // if the player dies, they'll go back to their last checkpoint
         if(died){
             transform.position = respawnPoint;
+            currentHealth -= damageAmount;
+            HealthBar.instance.SetHealth(currentHealth);
             died = false;
         }
 
