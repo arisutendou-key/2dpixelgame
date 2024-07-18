@@ -382,13 +382,14 @@ public class PlayerMovement : MonoBehaviour
         //portals
         if(other.tag == "neptune")
         {
+            UIManager.instance.levelComplete = true;
             SceneManager.LoadScene("Neptune");
-
         }
+        
         if(other.tag == "venus")
         {
+            UIManager.instance.levelComplete = true;
             SceneManager.LoadScene("Venus");
-
         }
 
         // setting respawn point when the player touches a checkpoint
