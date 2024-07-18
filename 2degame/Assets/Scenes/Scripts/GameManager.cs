@@ -82,4 +82,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Earth");
     }
+    public void controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+    public void mainscreen()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
 }
