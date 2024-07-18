@@ -21639,7 +21639,7 @@ GameObject:
   - component: {fileID: 1759926970}
   m_Layer: 0
   m_Name: earthBackGround
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24859,6 +24859,10 @@ PrefabInstance:
     - target: {fileID: 6274385578838217433, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274385578838217433, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91a3de2a8a05b43318592c7ec28a86ef, type: 3}

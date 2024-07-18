@@ -148,6 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   detectionDistance: 8
-  enemyProjectPrefab: {fileID: 3934347260000467919, guid: 6f650f30b4f2c48b986bb27f5f1451c8, type: 3}
+  enemyProjectPrefab: {fileID: 3934347260000467919, guid: 011dc3a14530d4e0ab3aa448f3e7576f, type: 3}
   timer: 0
   repeatEnd: 2000
