@@ -10893,7 +10893,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1391117067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e12b567a68604db3836000c23bf2cd7, type: 3}
+  m_Script: {fileID: 11500000, guid: afd0bfb33bf95464aae99b17d34a096f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
@@ -10907,11 +10907,15 @@ MonoBehaviour:
   hasPowerup: 0
   jumppowerup: 0
   runpowerup: 0
+  haswarmpowerup: 0
   respawnPoint: {x: 0, y: 0, z: 0}
   died: 0
   enemyDeath: {fileID: 0}
   collectStar: {fileID: 0}
   starsCollected: 0
+  freezenotice: {fileID: 0}
+  warmupnotice: {fileID: 0}
+  freezing: 0
 --- !u!1 &1395721994
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform GroundCheckPoint;
     public LayerMask GroundLayer;
     public int maxJumps = 2;
-    public GameObject losescreen;
     public bool hasPowerup = false;
     public bool jumppowerup = false;
     public bool runpowerup = false;
@@ -42,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
 
-        losescreen.SetActive(false);
         respawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         instance = this;
 
@@ -70,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5f);
         if(haswarmpowerup == false)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            died = true;
         }
         else
         {
@@ -312,7 +310,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //Destroy(gameObject);
             died = true;
-            losescreen.SetActive(true);
+            
         }
 
         // if the player dies, they'll go back to their last checkpoint
