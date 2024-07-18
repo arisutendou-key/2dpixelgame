@@ -14,13 +14,21 @@ public class GameManager : MonoBehaviour
     public bool muted = false;
     public GameObject[] totalStars;
     public float starPercentage;
+    public GameObject stars;
 
     // Start is called before the first frame update
     void Start()
     {
         // *** change to refer to scene name instead of build index later
-        if(SceneManager.GetActiveScene().name == "Main Menu"){
+        if(SceneManager.GetActiveScene().name == "StartScreen"){
             BGMusic.clip = mainBGMusic;
+
+            // creates a new star on the screen 8 times in a random position
+            for(int i = 0; i < 20; i++){
+                stars.transform.localScale = new Vector2(0.5f,0.5f);
+
+                Instantiate(stars, new Vector2(Random.Range(-8f, 8f), Random.Range(-4f, 4f)), transform.rotation);
+            }
         } else if(SceneManager.GetActiveScene().name == "Earth"){
             BGMusic.clip = earthBGMusic;
         } else if(SceneManager.GetActiveScene().name == "Neptune"){
@@ -81,5 +89,21 @@ public class GameManager : MonoBehaviour
     public void earth()
     {
         SceneManager.LoadScene("Earth");
+    }
+    public void controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+    public void Venus()
+    {
+        SceneManager.LoadScene("Venus");
+    }
+    public void Neptune()
+    {
+        SceneManager.LoadScene("Neptune");
+    }
+    public void mainscreen()
+    {
+        SceneManager.LoadScene("StartScreen");
     }
 }
