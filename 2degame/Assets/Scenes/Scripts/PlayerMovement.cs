@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int damageAmount = 20;
-    public AudioSource 
+    public AudioSource losingHpSFX;
 
    // public TextMeshProUGUI scoretext;
 
@@ -133,10 +133,16 @@ public class PlayerMovement : MonoBehaviour
         if(horizontalInput < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
+            if(!useRunSFX.isPlaying){
+                useRunSFX.Play();
+            }
         }
         else if(horizontalInput > 0)
         {
             transform.localScale = new Vector3(1,1,1);
+            if(!useRunSFX.isPlaying){
+                useRunSFX.Play();
+            }
         }
 
         //jumping
@@ -153,6 +159,9 @@ public class PlayerMovement : MonoBehaviour
         {
             nextVelocityY = jumpSpeed;
             jumpsLeft -= 1;
+            if(!useJumpSFX.isPlaying){
+                useJumpSFX.Play();
+            }
         }
         //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
         //anim.SetFloat("YSpeed", nextVelocityY);
@@ -172,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = respawnPoint;
             currentHealth -= damageAmount;
             HealthBar.instance.SetHealth(currentHealth);
-
+            losingHpSFX.Play();
             died = false;
         }
         HealthBar.instance.SetHealth(currentHealth);
