@@ -253,9 +253,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //portals
-        if(other.tag == "neptune")
+        if(other.tag == "Neptune")
         {
-            UIManager.instance.levelComplete = true;
+            //UIManager.instance.levelComplete = true;
             SceneManager.LoadScene("Neptune");
         }
         

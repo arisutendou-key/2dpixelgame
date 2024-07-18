@@ -19,6 +19,7 @@ TagManager:
   - end
   - square
   - square2
+  - Neptune
   layers:
   - Default
   - TransparentFX
