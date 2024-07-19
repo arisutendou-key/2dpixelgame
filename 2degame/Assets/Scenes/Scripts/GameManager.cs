@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Neptune"){
             overlayOpacity += 0.0003f;
         } else if(SceneManager.GetActiveScene().name == "Venus"){
-            overlayOpacity += 0.00015f;
+            overlayOpacity += 0.00018f;
         }
 
         if(!freezeOverlay.activeSelf && !burnOverlay.activeSelf){
@@ -105,9 +105,6 @@ public class GameManager : MonoBehaviour
             //overlayOpacity = 0;
             burnOverlay.GetComponent<Image>().color = new Vector4(0, 222, 255, 0);
         }
-
-        print(overlayOpacity);
-        print(freezeOverlay.GetComponent<Image>().color);
     }
 
     public void Venus()

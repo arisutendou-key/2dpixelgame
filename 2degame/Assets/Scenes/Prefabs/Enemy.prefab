@@ -150,7 +150,7 @@ MonoBehaviour:
   detectionDistance: 8
   enemyProjectPrefab: {fileID: 3934347260000467919, guid: 011dc3a14530d4e0ab3aa448f3e7576f, type: 3}
   timer: 0
-  repeatEnd: 2000
+  repeatEnd: 1500
   earthShootSprite: {fileID: 21300000, guid: d97ff1a89a44cf040bd3a44cd5da886c, type: 3}
   neptuneShootSprite: {fileID: 21300000, guid: 9ae0d646fe11a2d4cb0c2ad0bcff10d6, type: 3}
   venusShootSprite: {fileID: 21300000, guid: c4defb765faaad349825d1cf90e04150, type: 3}

@@ -29,6 +29,7 @@ public class EnemyScript : MonoBehaviour
         // distance, the enemy will immediately spawn a projectile towards the player.
         // then, after the specified repetition time, it will spawn a projectile again
         if(Math.Abs((player.transform.position - transform.position).magnitude) <= detectionDistance){
+            print("in range");
             if(timer == 0){
                 ShootProjectile();
             }
@@ -41,6 +42,8 @@ public class EnemyScript : MonoBehaviour
         } else {
             timer = repeatEnd;
         }
+
+        //print(Math.Abs((player.transform.position - transform.position).magnitude));
     }
 
     private void ShootProjectile(){
