@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d97ff1a89a44cf040bd3a44cd5da886c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,6 +137,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  earthShootSprite: {fileID: 21300000, guid: d97ff1a89a44cf040bd3a44cd5da886c, type: 3}
-  neptuneShootSprite: {fileID: 21300000, guid: 9ae0d646fe11a2d4cb0c2ad0bcff10d6, type: 3}
-  venusShootSprite: {fileID: 21300000, guid: c4defb765faaad349825d1cf90e04150, type: 3}

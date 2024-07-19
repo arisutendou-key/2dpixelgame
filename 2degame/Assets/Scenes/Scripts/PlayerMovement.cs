@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
     public AudioSource enemyDeath;
     public AudioSource collectStar;
-    public float starsCollected = 0;
+    public static float starsCollected = 0;
     public GameObject freezenotice;
     public GameObject warmupnotice;
     public bool freezing = false;
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth;
     public int damageAmount = 20;
     public AudioSource losingHpSFX;
+    private float nextVelocityX = 0;
 
    // public TextMeshProUGUI scoretext;
 
@@ -137,22 +139,22 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        //moving left and right
-        float nextVelocityX = horizontalInput * moveSpeed;
-
-        if(horizontalInput < 0)
-        {
-            transform.localScale = new Vector3(-1,1,1);
+        if(Math.Abs(horizontalInput) == 1 && nextVelocityX == 0){
             if(runpowerup && !useRunSFX.isPlaying){
                 useRunSFX.Play();
             }
         }
+
+        //moving left and right
+        nextVelocityX = horizontalInput * moveSpeed;
+
+        if(horizontalInput < 0)
+        {
+            transform.localScale = new Vector3(-1,1,1);
+        }
         else if(horizontalInput > 0)
         {
             transform.localScale = new Vector3(1,1,1);
-            if(runpowerup && !useRunSFX.isPlaying){
-                useRunSFX.Play();
-            }
         }
 
         //jumping
@@ -239,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             starsCollected += 1;
             //scoretext.text = "Score: " + starsCollected;
-            collectStar.clip = possibleStarSFX[Random.Range(0,4)];
+            collectStar.clip = possibleStarSFX[UnityEngine.Random.Range(0,4)];
             
             collectStar.Play();
         }   
@@ -286,13 +288,15 @@ public class PlayerMovement : MonoBehaviour
         if(other.tag == "Neptune")
         {
             //UIManager.instance.levelComplete = true;
-            SceneManager.LoadScene("Neptune");
+            //SceneManager.LoadScene("Neptune");
+            SceneManager.LoadScene("LevelComplete");
         }
         
         if(other.tag == "venus")
         {
-            UIManager.instance.levelComplete = true;
-            SceneManager.LoadScene("Venus");
+            //UIManager.instance.levelComplete = true;
+            //SceneManager.LoadScene("Venus");
+            SceneManager.LoadScene("LevelComplete");
         }
         
         
@@ -300,6 +304,8 @@ public class PlayerMovement : MonoBehaviour
         // setting respawn point when the player touches a checkpoint
         if(other.gameObject.CompareTag("Checkpoint")){
             respawnPoint = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
+            other.gameObject.GetComponent<Animator>().SetBool("Activated", true);
+            //other.gameObject.GetComponent<Animator>().SetBool("Activated", false);
         }
     } 
 

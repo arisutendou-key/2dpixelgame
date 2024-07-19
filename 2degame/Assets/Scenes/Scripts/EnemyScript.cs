@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class EnemyScript : MonoBehaviour
     //public bool detectedPlayer = false;
     public int timer = 0;
     public int repeatEnd = 500;
+    public Sprite earthShootSprite;
+    public Sprite neptuneShootSprite;
+    public Sprite venusShootSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,14 @@ public class EnemyScript : MonoBehaviour
     }
 
     private void ShootProjectile(){
+        if(SceneManager.GetActiveScene().name == "Earth"){
+            enemyProjectPrefab.GetComponent<SpriteRenderer>().sprite = earthShootSprite;
+        } else if(SceneManager.GetActiveScene().name == "Neptune"){
+            enemyProjectPrefab.GetComponent<SpriteRenderer>().sprite = neptuneShootSprite;
+        } else if(SceneManager.GetActiveScene().name == "Venus"){
+            enemyProjectPrefab.GetComponent<SpriteRenderer>().sprite = venusShootSprite;
+        }
+
         Instantiate(enemyProjectPrefab, transform.position, enemyProjectPrefab.transform.rotation);
     }
 }

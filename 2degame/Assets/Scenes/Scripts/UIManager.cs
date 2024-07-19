@@ -8,16 +8,16 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public bool levelComplete = false;
-    public TextMeshPro levelRatingText;
-    public TextMeshPro collectedStarsText;
-    public GameObject levelCompleteScreen;
+    public TextMeshProUGUI levelRatingText;
+    public TextMeshProUGUI collectedStarsText;
+    //public GameObject levelCompleteScreen;
     //public string lastScene;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        levelCompleteScreen.SetActive(false);
+        //levelCompleteScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,15 +27,15 @@ public class UIManager : MonoBehaviour
         // <= ~50%, the level gets a 1 star rating
         // if it's < 100%, it's a 2 star rating
         // a full 100% gets a 3 star rating
-        if(GameManager.instance.starPercentage <= 50){
+        if(GameManager.starPercentage <= 50){
             levelRatingText.text = "Level Rating: 1 star";
-        } else if(GameManager.instance.starPercentage < 100){
-            levelRatingText.text = "Level Rating: 2 star";
-        } else if(GameManager.instance.starPercentage == 100){
-            levelRatingText.text = "Level Rating: 3 star";
+        } else if(GameManager.starPercentage < 100){
+            levelRatingText.text = "Level Rating: 2 stars";
+        } else if(GameManager.starPercentage >= 100){
+            levelRatingText.text = "Level Rating: 3 stars";
         }
 
-        collectedStarsText.text = "Stars Collected: " + PlayerMovement.instance.starsCollected + " / " + GameManager.instance.totalStars.Length;
+        collectedStarsText.text = "Stars Collected: " + PlayerMovement.starsCollected + " / " + GameManager.totalStarsAmount;
     }
 
     public void earth()
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void ContinueLevel(){
-        levelCompleteScreen.SetActive(false);
+        //levelCompleteScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

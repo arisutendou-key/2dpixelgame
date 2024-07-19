@@ -9,9 +9,6 @@ public class EnemyProjectileScript : MonoBehaviour
     //public GameObject player;
     public float moveSpeed = 4f;
     private Vector2 lookDirection;
-    public Sprite earthShootSprite;
-    public Sprite neptuneShootSprite;
-    public Sprite venusShootSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -29,16 +26,6 @@ public class EnemyProjectileScript : MonoBehaviour
         // making the projectile move in the direction of the player at
         // a specified speed
         transform.Translate(moveSpeed * Time.deltaTime * lookDirection);
-
-        if(SceneManager.GetActiveScene().name == "Earth"){
-            gameObject.GetComponent<SpriteRenderer>().sprite = earthShootSprite;
-        } else if(SceneManager.GetActiveScene().name == "Neptune"){
-            gameObject.GetComponent<SpriteRenderer>().sprite = neptuneShootSprite;
-        } else if(SceneManager.GetActiveScene().name == "Venus"){
-            gameObject.GetComponent<SpriteRenderer>().sprite = venusShootSprite;
-
-            transform.localScale = new Vector3(4, 4, 4);
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

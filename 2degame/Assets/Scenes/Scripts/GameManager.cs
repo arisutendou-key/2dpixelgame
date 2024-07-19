@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public AudioClip spaceBGMusic;
     public AudioSource BGMusic;
     public GameObject[] totalStars;
-    public float starPercentage;
+    public static int totalStarsAmount;
+    public static float starPercentage;
     public GameObject stars;
     public static GameManager instance;
     public bool muted = false;
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this; 
+
+        // figures out how many stars there are in the level
+        totalStars = GameObject.FindGameObjectsWithTag("star");
 
         if(SceneManager.GetActiveScene().name == "StartScreen"){
             BGMusic.clip = mainBGMusic;
@@ -33,10 +37,13 @@ public class GameManager : MonoBehaviour
             }
         } else if(SceneManager.GetActiveScene().name == "Earth"){
             BGMusic.clip = earthBGMusic;
+            totalStarsAmount = totalStars.Length;
         } else if(SceneManager.GetActiveScene().name == "Neptune"){
             BGMusic.clip = coldBGMusic;
+            totalStarsAmount = totalStars.Length;
         } else if(SceneManager.GetActiveScene().name == "Venus"){
             BGMusic.clip = hotBGMusic;
+            totalStarsAmount = totalStars.Length;
         } else if(SceneManager.GetActiveScene().name == "Space"){
             BGMusic.clip = spaceBGMusic;
         } else {
@@ -44,9 +51,6 @@ public class GameManager : MonoBehaviour
         }
 
         BGMusic.Play();
-
-        // figures out how many stars there are in the level
-        totalStars = GameObject.FindGameObjectsWithTag("star");
     }
 
     // Update is called once per frame
@@ -54,7 +58,9 @@ public class GameManager : MonoBehaviour
     {
         // creates a percentage of the stars that the player has collected
         // out of all the stars in the level
-        starPercentage = (PlayerMovement.instance.starsCollected / totalStars.Length) * 100;
+        starPercentage = (PlayerMovement.starsCollected / totalStarsAmount) * 100;
+
+        print(totalStarsAmount);
     }
 
     public void Venus()
