@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public int damageAmount = 15;
     public AudioSource losingHpSFX;
     private float nextVelocityX = 0;
+    private bool isFreezing = false;
 
    // public TextMeshProUGUI scoretext;
 
@@ -79,8 +80,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator freezetimer()
     {
+        isFreezing = true;
         yield return new WaitForSeconds(5f);
-        if(haswarmpowerup == false)
+        if(haswarmpowerup == false && isFreezing == true)
         {
             died = true;
         }
@@ -88,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         {
             freezing = false;
         }  
+
+        isFreezing = false;
     }
     IEnumerator RunPowerupCooldown(GameObject other)
     {
@@ -199,6 +203,9 @@ public class PlayerMovement : MonoBehaviour
             losingHpSFX.Play();
             // setting camera to player's position when respawning
             CameraScript.instance.transform.position = new Vector3(transform.position.x, transform.position.y, CameraScript.instance.transform.position.z);
+            StopCoroutine("coldtimer");
+            StopCoroutine("freezetimer");
+            
             died = false;
         }
 
@@ -221,12 +228,18 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(freezing == false)
             {
+                //isFreezing = true;
                 StartCoroutine("coldtimer");
             }
             else if(freezing)
             {
+                //isFreezing = true;
                 freezenotice.SetActive(true);
                 StartCoroutine("freezetimer");
+            }
+
+            if(!isFreezing){
+                StopCoroutine("freezetimer");
             }
         }
 
