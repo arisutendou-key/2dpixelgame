@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource losingHpSFX;
     private float nextVelocityX = 0;
     private bool isFreezing = false;
+    private Coroutine jumpPowerUpCo;
+    private Coroutine runPowerUpCo;
 
    // public TextMeshProUGUI scoretext;
 
@@ -150,8 +152,8 @@ public class PlayerMovement : MonoBehaviour
                 GameManager.instance.jumpIcon.SetActive(true);
 
             } else if(haswarmpowerup){
-                moveSpeed = 8f;
-                jumpSpeed = 7f;
+                //moveSpeed = 8f;
+                //jumpSpeed = 7f;
             }
         }
 
@@ -295,22 +297,29 @@ public class PlayerMovement : MonoBehaviour
         //powerups
         if(other.tag == "jump")
         {
+            if(jumppowerup){
+                StopCoroutine(runPowerUpCo);
+            }
+
             hasPowerup = true;
             jumppowerup = true;
             jumpPowerUpSFX.Play();
             other.gameObject.SetActive(false);
-            StopCoroutine(JumpPowerupCooldown(other.gameObject));
-            StartCoroutine(JumpPowerupCooldown(other.gameObject));
+            //StopCoroutine(JumpPowerupCooldown(other.gameObject));
+            jumpPowerUpCo = StartCoroutine(JumpPowerupCooldown(other.gameObject));
         }
         if(other.tag == "run")
         {
+            if(runpowerup){
+                StopCoroutine(runPowerUpCo);
+            }
+
             hasPowerup = true;
             runpowerup = true;
             runPowerUpSFX.Play();
             other.gameObject.SetActive(false);
-            StopCoroutine(RunPowerupCooldown(other.gameObject));
-            StartCoroutine(RunPowerupCooldown(other.gameObject));
-            
+            //StopCoroutine(RunPowerupCooldown(other.gameObject));
+            runPowerUpCo = StartCoroutine(RunPowerupCooldown(other.gameObject));
         }
         if(other.tag == "warm")
         {
