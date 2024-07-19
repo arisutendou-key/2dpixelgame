@@ -194,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
         if(died){
             transform.position = respawnPoint;
             currentHealth -= damageAmount;
+            print(currentHealth);
             HealthBar.instance.SetHealth(currentHealth);
             losingHpSFX.Play();
             // setting camera to player's position when respawning
