@@ -81,6 +81,15 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator freezetimer()
     {
         isFreezing = true;
+
+        /*
+        if(SceneManager.GetActiveScene().name == "Neptune"){
+            GameManager.instance.freezeOverlay.SetActive(true);
+        } else if(SceneManager.GetActiveScene().name == "Venus"){
+            GameManager.instance.burnOverlay.SetActive(true);
+        }
+        */
+
         yield return new WaitForSeconds(5f);
         if(haswarmpowerup == false && isFreezing == true)
         {
@@ -98,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(7f);
         //hasPowerup = false;
         runpowerup = false;
+        GameManager.instance.runIcon.SetActive(false);
         other.gameObject.SetActive(true);
         //haswarmpowerup = false;
     }
@@ -107,17 +117,18 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(7f);
         //hasPowerup = false;
         jumppowerup = false;
+        GameManager.instance.jumpIcon.SetActive(false);
         other.gameObject.SetActive(true);
         //haswarmpowerup = false;
     }
 
-    IEnumerator warmPowerupCooldown()
+    IEnumerator warmPowerupCooldown(GameObject other)
     {
         yield return new WaitForSeconds(7f);
         hasPowerup = false;
         haswarmpowerup = false;
         warmupnotice.SetActive(false);
- 
+        other.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -130,11 +141,13 @@ public class PlayerMovement : MonoBehaviour
         } else {
             if(runpowerup){
                 moveSpeed = 12f;
+                GameManager.instance.runIcon.SetActive(true);
                 //jumpSpeed = 7f;   
 
             } else if(jumppowerup){
                 //moveSpeed = 8f;
                 jumpSpeed = 12f;
+                GameManager.instance.jumpIcon.SetActive(true);
 
             } else if(haswarmpowerup){
                 moveSpeed = 8f;
@@ -205,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
             CameraScript.instance.transform.position = new Vector3(transform.position.x, transform.position.y, CameraScript.instance.transform.position.z);
             StopCoroutine("coldtimer");
             StopCoroutine("freezetimer");
-            
+            GameManager.instance.overlayOpacity = 0;
             died = false;
         }
 
@@ -223,8 +236,15 @@ public class PlayerMovement : MonoBehaviour
                 StopCoroutine("freezetimer");
                 warmupnotice.SetActive(true);
                 freezenotice.SetActive(false);
-                freezing = false;
 
+                if(SceneManager.GetActiveScene().name == "Neptune"){
+                    GameManager.instance.freezeOverlay.SetActive(false);
+                } else if(SceneManager.GetActiveScene().name == "Venus"){
+                    GameManager.instance.burnOverlay.SetActive(false);
+                }
+
+                freezing = false;
+                GameManager.instance.overlayOpacity = 0;
             }
             else if(freezing == false)
             {
@@ -235,6 +255,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 //isFreezing = true;
                 freezenotice.SetActive(true);
+                if(SceneManager.GetActiveScene().name == "Neptune"){
+                    GameManager.instance.freezeOverlay.SetActive(true);
+                } else if(SceneManager.GetActiveScene().name == "Venus"){
+                    GameManager.instance.burnOverlay.SetActive(true);
+                }
                 StartCoroutine("freezetimer");
             }
 
@@ -283,16 +308,19 @@ public class PlayerMovement : MonoBehaviour
             hasPowerup = true;
             haswarmpowerup = true;
             freezing = false;
-            StartCoroutine(warmPowerupCooldown());
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            StartCoroutine(warmPowerupCooldown(other.gameObject));
+            //Destroy(other.gameObject);
         }
         if(other.tag == "square")
         {
             transform.position = new Vector3(104,-1,0);
+            CameraScript.instance.transform.position = new Vector3(transform.position.x, transform.position.y, CameraScript.instance.transform.position.z);
         }
         if(other.tag == "square2")
         {
             transform.position = new Vector3(-11,0,0);
+            CameraScript.instance.transform.position = new Vector3(transform.position.x, transform.position.y, CameraScript.instance.transform.position.z);
         }
         if(other.tag == "end")
         {

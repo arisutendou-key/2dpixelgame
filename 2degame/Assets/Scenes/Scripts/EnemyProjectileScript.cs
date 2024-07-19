@@ -30,9 +30,10 @@ public class EnemyProjectileScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // should destroy projectile when it touches anything but the enemy, itself, the background, a star, or a checkpoint
+        // should destroy projectile when it touches anything but the enemy, itself, the background, a star, a checkpoint, or a powerup
         if(!other.gameObject.CompareTag("Enemy") && other.gameObject != gameObject && !other.gameObject.CompareTag("Background") 
-        && !other.gameObject.CompareTag("star") && !other.gameObject.CompareTag("Checkpoint")){
+        && !other.gameObject.CompareTag("star") && !other.gameObject.CompareTag("Checkpoint")  && !other.gameObject.CompareTag("jump")
+        && !other.gameObject.CompareTag("run")){
             // destroying both the projectile and the player if the two hit
             Destroy(gameObject);
             

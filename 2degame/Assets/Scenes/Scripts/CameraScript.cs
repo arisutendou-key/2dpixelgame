@@ -13,7 +13,7 @@ public class CameraScript : MonoBehaviour
         instance = this;
     }
 
-    void LateUpdate()
+    void Update()
     {
         if(SceneManager.GetActiveScene().name == "Earth"){
             if(player.transform.position.y < 0 || player.transform.position.y > 9.25){
