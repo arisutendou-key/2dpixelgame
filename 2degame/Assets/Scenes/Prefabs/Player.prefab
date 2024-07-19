@@ -415,7 +415,6 @@ MonoBehaviour:
   died: 0
   enemyDeath: {fileID: 3002338249985218161}
   collectStar: {fileID: 3002338249985218160}
-  starsCollected: 0
   freezenotice: {fileID: 0}
   warmupnotice: {fileID: 0}
   freezing: 0
@@ -431,7 +430,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17dd04bb3f0184f50a5835a586a0f8aa, type: 3}
   maxHealth: 100
   currentHealth: 100
-  damageAmount: 20
+  damageAmount: 15
   losingHpSFX: {fileID: 3002338249985218170}
 --- !u!82 &3002338249985218171
 AudioSource:

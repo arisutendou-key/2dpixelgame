@@ -75,8 +75,6 @@ public class UIManager : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameManager.gameTotalStarsCollected += PlayerMovement.starsCollected;
         GameManager.gameTotalStars += GameManager.totalStarsAmount;
-        PlayerMovement.starsCollected = 0;
-        GameManager.totalStarsAmount = 0;
         
         SceneManager.LoadScene(nextScene);
     }

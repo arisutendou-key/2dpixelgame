@@ -58,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
 
         currentHealth = maxHealth;
         HealthBar.instance.SetMaxHealth(100);
+
+        starsCollected = 0;
+        //GameManager.totalStarsAmount = 0;
     }
     bool GroundCheck()
     {
@@ -84,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             freezing = false;
-
         }  
     }
     IEnumerator RunPowerupCooldown(GameObject other)
@@ -288,6 +290,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //UIManager.instance.levelComplete = true;
             //SceneManager.LoadScene("Neptune");
+            UIManager.lastScene = "Earth";
             UIManager.nextScene = "Neptune";
             SceneManager.LoadScene("LevelComplete");
         }
@@ -296,6 +299,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //UIManager.instance.levelComplete = true;
             //SceneManager.LoadScene("Venus");
+            UIManager.lastScene = "Neptune";
             UIManager.nextScene = "Venus";
             SceneManager.LoadScene("LevelComplete");
         }

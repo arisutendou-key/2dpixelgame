@@ -61,9 +61,6 @@ public class GameManager : MonoBehaviour
         // creates a percentage of the stars that the player has collected
         // out of all the stars in the level
         starPercentage = (PlayerMovement.starsCollected / totalStarsAmount) * 100;
-
-        print(gameTotalStars);
-        print(gameTotalStarsCollected);
     }
 
     public void Venus()
