@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(7f);
         //hasPowerup = false;
         runpowerup = false;
-        GameManager.instance.runIcon.SetActive(false);
+        //GameManager.instance.runIcon.SetActive(false);
         other.gameObject.SetActive(true);
         //haswarmpowerup = false;
     }
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(7f);
         //hasPowerup = false;
         jumppowerup = false;
-        GameManager.instance.jumpIcon.SetActive(false);
+        //GameManager.instance.jumpIcon.SetActive(false);
         other.gameObject.SetActive(true);
         //haswarmpowerup = false;
     }
@@ -153,6 +153,14 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = 8f;
                 jumpSpeed = 7f;
             }
+        }
+
+        if(!jumppowerup){
+             GameManager.instance.jumpIcon.SetActive(false);
+        }
+
+        if(!runpowerup){
+            GameManager.instance.runIcon.SetActive(false);
         }
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -291,6 +299,7 @@ public class PlayerMovement : MonoBehaviour
             jumppowerup = true;
             jumpPowerUpSFX.Play();
             other.gameObject.SetActive(false);
+            StopCoroutine(JumpPowerupCooldown(other.gameObject));
             StartCoroutine(JumpPowerupCooldown(other.gameObject));
         }
         if(other.tag == "run")
@@ -299,6 +308,7 @@ public class PlayerMovement : MonoBehaviour
             runpowerup = true;
             runPowerUpSFX.Play();
             other.gameObject.SetActive(false);
+            StopCoroutine(RunPowerupCooldown(other.gameObject));
             StartCoroutine(RunPowerupCooldown(other.gameObject));
             
         }
