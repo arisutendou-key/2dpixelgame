@@ -291,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(other.tag == "venus")
         {
-            UIManager.instance.levelComplete = true;
+            //UIManager.instance.levelComplete = true;
             SceneManager.LoadScene("Venus");
         }
         
