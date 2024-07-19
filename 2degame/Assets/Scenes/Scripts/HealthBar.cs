@@ -25,7 +25,7 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         if(slider.value <= 0){
-            //SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
         }
 
         /*

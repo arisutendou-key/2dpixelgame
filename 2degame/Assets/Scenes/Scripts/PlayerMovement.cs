@@ -133,14 +133,14 @@ public class PlayerMovement : MonoBehaviour
         if(horizontalInput < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
-            if(!useRunSFX.isPlaying){
+            if(hasPowerup && !useRunSFX.isPlaying){
                 useRunSFX.Play();
             }
         }
         else if(horizontalInput > 0)
         {
             transform.localScale = new Vector3(1,1,1);
-            if(!useRunSFX.isPlaying){
+            if(hasPowerup && !useRunSFX.isPlaying){
                 useRunSFX.Play();
             }
         }
@@ -159,7 +159,8 @@ public class PlayerMovement : MonoBehaviour
         {
             nextVelocityY = jumpSpeed;
             jumpsLeft -= 1;
-            if(!useJumpSFX.isPlaying){
+
+            if(hasPowerup && !useJumpSFX.isPlaying){
                 useJumpSFX.Play();
             }
         }

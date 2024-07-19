@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartScreen.unity
+    path: Assets/Scenes/Menus/StartScreen.unity
     guid: be1e2e6e4cf2290419464c8aad7b8906
   - enabled: 1
-    path: Assets/Scenes/Controls.unity
-    guid: cfa577915e8464299b80cca924e7ec25
+    path: Assets/Scenes/Menus/Controls.unity
+    guid: ae1824e7669564f9c923bc8144d6b905
   - enabled: 1
     path: Assets/Scenes/Levels/Earth.unity
     guid: 35a0016b6a3124a1d878227d69c167ec
@@ -21,18 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Venus.unity
     guid: ea80bea8246a84b6c9e477458996a64c
   - enabled: 1
-    path: Assets/Scenes/Endscreen.unity
+    path: Assets/Scenes/Menus/Endscreen.unity
     guid: a9c03980fc1b34a159948b164b4e90ec
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Scenes/AnnaDev/Anna Dev Scene.unity
-    guid: db22a84a5c39d4294b6f66e94bff2b12
-  - enabled: 0
-    path: Assets/Scenes/AnnaDev/Level 1.unity
-    guid: 5d9864122bda04ddc87a8bc7aa2970a2
-  - enabled: 0
-    path: Assets/Scenes/AnnaDev/Level 2.unity
-    guid: e5aec062a09ef45b9850896c9b9da7e8
+  - enabled: 1
+    path: Assets/Scenes/Menus/GameOver.unity
+    guid: c57e943912ead417ebd2e926d17286fc
+  - enabled: 1
+    path: Assets/Scenes/Menus/LevelComplete.unity
+    guid: 3c47ba048a62e4c3685be2b990f96822
   m_configObjects: {}

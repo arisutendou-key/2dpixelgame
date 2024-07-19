@@ -36,6 +36,8 @@ public class EnemyProjectileScript : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = neptuneShootSprite;
         } else if(SceneManager.GetActiveScene().name == "Venus"){
             gameObject.GetComponent<SpriteRenderer>().sprite = venusShootSprite;
+
+            transform.localScale = new Vector3(4, 4, 4);
         }
     }
 

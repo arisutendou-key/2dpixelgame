@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             for(int i = 0; i < 20; i++){
                 stars.transform.localScale = new Vector2(0.5f,0.5f);
 
-                Instantiate(stars, new Vector2(Random.Range(-8f, 8f), Random.Range(-4f, 4f)), transform.rotation);
+                Instantiate(stars, new Vector2(Random.Range(-8f, 8f), Random.Range(-3.3f, 4f)), transform.rotation);
             }
         } else if(SceneManager.GetActiveScene().name == "Earth"){
             BGMusic.clip = earthBGMusic;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         // out of all the stars in the level
         starPercentage = (PlayerMovement.instance.starsCollected / totalStars.Length) * 100;
     }
-    
+
     public void Venus()
     {
         SceneManager.LoadScene("Venus");
