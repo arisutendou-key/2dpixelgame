@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c42fe11ec7a478e95f121da903a412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 3002338249985218152, guid: f0a18a09f69f04b7f96b5d53956bd1d7, type: 3}
   detectionDistance: 8
   enemyProjectPrefab: {fileID: 3934347260000467919, guid: 011dc3a14530d4e0ab3aa448f3e7576f, type: 3}
   timer: 0

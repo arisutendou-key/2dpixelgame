@@ -32,7 +32,7 @@ public class CameraScript : MonoBehaviour
                 transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
             }
         } else if(SceneManager.GetActiveScene().name == "Venus"){
-            if(player.transform.position.y < 0 || player.transform.position.y > 9.25){
+            if(player.transform.position.y < 0 || player.transform.position.y > 9.75){
                 // follows the player's x, but keeps the camera's y and z as it moves 
                 transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
             } else {
