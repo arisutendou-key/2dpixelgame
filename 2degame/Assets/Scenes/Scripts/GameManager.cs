@@ -13,8 +13,10 @@ public class GameManager : MonoBehaviour
     public AudioSource BGMusic;
     public GameObject[] totalStars;
     public static int totalStarsAmount;
+    public static float gameTotalStarsCollected;
+    public static int gameTotalStars;
     public static float starPercentage;
-    public GameObject stars;
+    public GameObject starPrefab;
     public static GameManager instance;
     public bool muted = false;
 
@@ -31,9 +33,9 @@ public class GameManager : MonoBehaviour
 
             // creates a new star on the screen 8 times in a random position
             for(int i = 0; i < 20; i++){
-                stars.transform.localScale = new Vector2(0.5f,0.5f);
+                starPrefab.transform.localScale = new Vector2(0.5f,0.5f);
 
-                Instantiate(stars, new Vector2(Random.Range(-8f, 8f), Random.Range(-3.3f, 4f)), transform.rotation);
+                Instantiate(starPrefab, new Vector2(Random.Range(-8f, 8f), Random.Range(-3.3f, 4f)), transform.rotation);
             }
         } else if(SceneManager.GetActiveScene().name == "Earth"){
             BGMusic.clip = earthBGMusic;
@@ -60,7 +62,8 @@ public class GameManager : MonoBehaviour
         // out of all the stars in the level
         starPercentage = (PlayerMovement.starsCollected / totalStarsAmount) * 100;
 
-        print(totalStarsAmount);
+        print(gameTotalStars);
+        print(gameTotalStarsCollected);
     }
 
     public void Venus()

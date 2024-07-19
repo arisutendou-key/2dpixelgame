@@ -539,11 +539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a402c291443704662aecf5cb167241ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muted: 0
   levelComplete: 0
   levelRatingText: {fileID: 0}
   collectedStarsText: {fileID: 0}
-  levelCompleteScreen: {fileID: 0}
+  onControls: 0
 --- !u!4 &1001377418
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,9 +1087,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1001377416}
+      - m_Target: {fileID: 1001377417}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: mainscreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

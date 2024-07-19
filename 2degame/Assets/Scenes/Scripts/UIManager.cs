@@ -11,7 +11,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelRatingText;
     public TextMeshProUGUI collectedStarsText;
     //public GameObject levelCompleteScreen;
-    //public string lastScene;
+    public static string lastScene;
+    public static string nextScene;
+    public bool onControls;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,22 @@ public class UIManager : MonoBehaviour
         }
 
         collectedStarsText.text = "Stars Collected: " + PlayerMovement.starsCollected + " / " + GameManager.totalStarsAmount;
+
+        /*
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(SceneManager.GetActiveScene().name == "StartScreen" || SceneManager.GetActiveScene().name == "Earth" || 
+            SceneManager.GetActiveScene().name == "Neptune" || SceneManager.GetActiveScene().name == "Venus"){
+                if(!onControls){
+                    lastScene = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene("Controls");
+                } else {
+                    SceneManager.LoadScene(lastScene);
+                }
+
+                onControls = !onControls;
+            }
+        }
+        */
     }
 
     public void earth()
@@ -54,7 +72,17 @@ public class UIManager : MonoBehaviour
 
     public void ContinueLevel(){
         //levelCompleteScreen.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.gameTotalStarsCollected += PlayerMovement.starsCollected;
+        GameManager.gameTotalStars += GameManager.totalStarsAmount;
+        PlayerMovement.starsCollected = 0;
+        GameManager.totalStarsAmount = 0;
+        
+        SceneManager.LoadScene(nextScene);
+    }
+
+    public void PreviousLevel(){
+        SceneManager.LoadScene(lastScene);
     }
 
     /*

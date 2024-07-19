@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] possibleStarSFX;
     public int maxHealth = 100;
     public int currentHealth;
-    public int damageAmount = 20;
+    public int damageAmount = 15;
     public AudioSource losingHpSFX;
     private float nextVelocityX = 0;
 
@@ -133,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
             } else if(haswarmpowerup){
                 moveSpeed = 8f;
                 jumpSpeed = 7f;
-
             }
         }
 
@@ -289,6 +288,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //UIManager.instance.levelComplete = true;
             //SceneManager.LoadScene("Neptune");
+            UIManager.nextScene = "Neptune";
             SceneManager.LoadScene("LevelComplete");
         }
         
@@ -296,6 +296,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //UIManager.instance.levelComplete = true;
             //SceneManager.LoadScene("Venus");
+            UIManager.nextScene = "Venus";
             SceneManager.LoadScene("LevelComplete");
         }
         

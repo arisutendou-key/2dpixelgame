@@ -563,7 +563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1001377417}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: earth
+        m_MethodName: ContinueLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1322,6 +1322,7 @@ MonoBehaviour:
   levelComplete: 0
   levelRatingText: {fileID: 56360760}
   collectedStarsText: {fileID: 1943760970}
+  onControls: 0
 --- !u!222 &1001377418
 CanvasRenderer:
   m_ObjectHideFlags: 0
