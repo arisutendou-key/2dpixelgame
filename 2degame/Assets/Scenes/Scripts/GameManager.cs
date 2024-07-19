@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public float starPercentage;
     public GameObject stars;
     public static GameManager instance;
+    public bool muted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
             BGMusic.clip = hotBGMusic;
         } else if(SceneManager.GetActiveScene().name == "Space"){
             BGMusic.clip = spaceBGMusic;
+        } else {
+            BGMusic.clip = null;
         }
 
         BGMusic.Play();
@@ -61,5 +64,15 @@ public class GameManager : MonoBehaviour
     public void Neptune()
     {
         SceneManager.LoadScene("Neptune");
+    }
+
+    public void MuteMusic(){
+        if(muted){
+            GameManager.instance.BGMusic.Play();
+        } else {
+            GameManager.instance.BGMusic.Pause();
+        }
+
+        muted = !muted;
     }
 }

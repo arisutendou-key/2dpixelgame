@@ -5,6 +5,12 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     public GameObject player;
+    public static CameraScript instance;
+
+    void Start()
+    {
+        instance = this;
+    }
 
     void LateUpdate()
     {

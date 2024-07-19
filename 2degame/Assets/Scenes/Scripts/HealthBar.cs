@@ -24,9 +24,11 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(slider.value <= 0){
             SceneManager.LoadScene("GameOver");
         }
+        */
 
         /*
         if (timeUntilSetDamage > 0f)

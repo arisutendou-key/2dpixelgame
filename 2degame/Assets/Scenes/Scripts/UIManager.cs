@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public bool muted = false;
     public static UIManager instance;
     public bool levelComplete = false;
     public TextMeshPro levelRatingText;
@@ -37,16 +36,6 @@ public class UIManager : MonoBehaviour
         }
 
         collectedStarsText.text = "Stars Collected: " + PlayerMovement.instance.starsCollected + " / " + GameManager.instance.totalStars.Length;
-    }
-
-    public void MuteMusic(){
-        if(muted){
-            GameManager.instance.BGMusic.Play();
-        } else {
-            GameManager.instance.BGMusic.Pause();
-        }
-
-        muted = !muted;
     }
 
     public void earth()

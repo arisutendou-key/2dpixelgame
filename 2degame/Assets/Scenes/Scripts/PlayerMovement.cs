@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         respawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         instance = this;
@@ -84,13 +85,22 @@ public class PlayerMovement : MonoBehaviour
 
         }  
     }
-    IEnumerator PowerupCooldown()
+    IEnumerator RunPowerupCooldown(GameObject other)
     {
         yield return new WaitForSeconds(7f);
-        hasPowerup = false;
-        jumppowerup = false;
+        //hasPowerup = false;
         runpowerup = false;
-        haswarmpowerup = false;
+        other.gameObject.SetActive(true);
+        //haswarmpowerup = false;
+    }
+
+    IEnumerator JumpPowerupCooldown(GameObject other)
+    {
+        yield return new WaitForSeconds(7f);
+        //hasPowerup = false;
+        jumppowerup = false;
+        other.gameObject.SetActive(true);
+        //haswarmpowerup = false;
     }
 
     IEnumerator warmPowerupCooldown()
@@ -133,14 +143,14 @@ public class PlayerMovement : MonoBehaviour
         if(horizontalInput < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
-            if(hasPowerup && !useRunSFX.isPlaying){
+            if(runpowerup && !useRunSFX.isPlaying){
                 useRunSFX.Play();
             }
         }
         else if(horizontalInput > 0)
         {
             transform.localScale = new Vector3(1,1,1);
-            if(hasPowerup && !useRunSFX.isPlaying){
+            if(runpowerup && !useRunSFX.isPlaying){
                 useRunSFX.Play();
             }
         }
@@ -160,13 +170,13 @@ public class PlayerMovement : MonoBehaviour
             nextVelocityY = jumpSpeed;
             jumpsLeft -= 1;
 
-            if(hasPowerup && !useJumpSFX.isPlaying){
+            if(jumppowerup && !useJumpSFX.isPlaying){
                 useJumpSFX.Play();
             }
         }
-        //anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
-        //anim.SetFloat("YSpeed", nextVelocityY);
-        //anim.SetBool("Grounded", grounded);
+        anim.SetFloat("XSpeed", Mathf.Abs(nextVelocityX));
+        anim.SetFloat("YSpeed", nextVelocityY);
+        anim.SetBool("Grounded", grounded);
 
         rb2d.velocity = new Vector2(nextVelocityX, nextVelocityY);
 
@@ -183,7 +193,13 @@ public class PlayerMovement : MonoBehaviour
             currentHealth -= damageAmount;
             HealthBar.instance.SetHealth(currentHealth);
             losingHpSFX.Play();
+            // setting camera to player's position when respawning
+            CameraScript.instance.transform.position = new Vector3(transform.position.x, transform.position.y, CameraScript.instance.transform.position.z);
             died = false;
+        }
+
+        if(currentHealth <= 0){
+            SceneManager.LoadScene("GameOver");
         }
 
         //print(HealthBar.instance.slider.value);
@@ -209,6 +225,10 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine("freezetimer");
             }
         }
+
+        if(!jumppowerup && !runpowerup && !haswarmpowerup){
+            hasPowerup = false;
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -229,16 +249,16 @@ public class PlayerMovement : MonoBehaviour
             hasPowerup = true;
             jumppowerup = true;
             jumpPowerUpSFX.Play();
-            StartCoroutine(PowerupCooldown());
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            StartCoroutine(JumpPowerupCooldown(other.gameObject));
         }
         if(other.tag == "run")
         {
             hasPowerup = true;
             runpowerup = true;
             runPowerUpSFX.Play();
-            Destroy(other.gameObject);
-            StartCoroutine(PowerupCooldown());
+            other.gameObject.SetActive(false);
+            StartCoroutine(RunPowerupCooldown(other.gameObject));
             
         }
         if(other.tag == "warm")
